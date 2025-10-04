@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { AlertCircle, BookOpen, Lightbulb } from 'lucide-react';
 import SearchBox from '@/components/SearchBox';
@@ -13,19 +13,18 @@ function SearchContent() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
-  const [suggestions, setSuggestions] = useState<string[]>([]);
 
   // Get initial query from URL params
   const initialQuery = searchParams.get('q') || '';
 
-  useEffect(() => {
-    if (initialQuery) {
-      handleSearch(initialQuery);
-    }
-    loadSearchHistory();
-  }, [initialQuery]);
+  const addToSearchHistory = useCallback((query: string) => {
+    const normalizedQuery = DictionaryService.normalizeWord(query);
+    const newHistory = [normalizedQuery, ...searchHistory.filter(item => item !== normalizedQuery)].slice(0, 10);
+    setSearchHistory(newHistory);
+    localStorage.setItem('searchHistory', JSON.stringify(newHistory));
+  }, [searchHistory]);
 
-  const handleSearch = async (query: string) => {
+  const handleSearch = useCallback(async (query: string) => {
     if (!query.trim()) return;
 
     setLoading(true);
@@ -41,19 +40,19 @@ function SearchContent() {
       } else {
         setError(result.error || 'No results found');
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
-  };
+  }, [addToSearchHistory]);
 
-  const addToSearchHistory = (query: string) => {
-    const normalizedQuery = DictionaryService.normalizeWord(query);
-    const newHistory = [normalizedQuery, ...searchHistory.filter(item => item !== normalizedQuery)].slice(0, 10);
-    setSearchHistory(newHistory);
-    localStorage.setItem('searchHistory', JSON.stringify(newHistory));
-  };
+  useEffect(() => {
+    if (initialQuery) {
+      handleSearch(initialQuery);
+    }
+    loadSearchHistory();
+  }, [initialQuery, handleSearch]);
 
   const loadSearchHistory = () => {
     try {

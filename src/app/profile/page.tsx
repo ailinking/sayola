@@ -5,8 +5,6 @@ import {
   User, 
   Settings, 
   BookOpen, 
-  Clock, 
-  Target, 
   TrendingUp, 
   Volume2, 
   Globe, 

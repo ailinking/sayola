@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Calendar, BookOpen, Globe, Lightbulb, Trophy, Volume2, Clock } from 'lucide-react';
 import { dailyContentService, DailyContent } from '@/lib/dailyContent';
 import { ttsService } from '@/lib/ttsService';
@@ -14,15 +14,15 @@ export default function DailyPage() {
   const [showChallengeResult, setShowChallengeResult] = useState(false);
   const [audioLoading, setAudioLoading] = useState<string | null>(null);
 
+  const loadDailyContent = useCallback(() => {
+    const content = dailyContentService.getDailyContent(selectedDate);
+    setDailyContent(content);
+  }, [selectedDate]);
+
   useEffect(() => {
     loadDailyContent();
     loadWeeklyContent();
-  }, [selectedDate]);
-
-  const loadDailyContent = () => {
-    const content = dailyContentService.getDailyContent(selectedDate);
-    setDailyContent(content);
-  };
+  }, [selectedDate, loadDailyContent]);
 
   const loadWeeklyContent = () => {
     const content = dailyContentService.getWeeklyContent();
@@ -300,7 +300,7 @@ export default function DailyPage() {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7 gap-4">
-            {weeklyContent.map((content, index) => (
+            {weeklyContent.map((content) => (
               <div
                 key={content.date}
                 className={`p-4 rounded-lg border cursor-pointer transition-colors ${

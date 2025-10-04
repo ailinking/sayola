@@ -61,7 +61,7 @@ export default function ComparePage() {
             }
           : comp
       ));
-    } catch (error) {
+    } catch {
       setComparisons(prev => prev.map(comp => 
         comp.id === comparisonId 
           ? { 
