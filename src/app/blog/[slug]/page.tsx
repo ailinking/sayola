@@ -246,7 +246,11 @@ export async function generateStaticParams() {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const resolvedParams = await params;
   const blogPosts = await getBlogPosts();
-  const post = blogPosts.find(p => p.slug === resolvedParams.slug) || sampleBlogPosts.find(p => p.id === resolvedParams.slug);
+  
+  // First try to find by slug in blogPosts, then by id in blogPosts, then by id in sampleBlogPosts
+  const post = blogPosts.find(p => p.slug === resolvedParams.slug) || 
+               blogPosts.find(p => p.id === resolvedParams.slug) ||
+               sampleBlogPosts.find(p => p.id === resolvedParams.slug);
 
   if (!post) {
     notFound();
@@ -376,7 +380,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <div className="p-4">
                     <span className="text-xs text-green-600 font-medium">{relatedPost.category}</span>
                     <h4 className="font-semibold text-gray-900 mb-2 line-clamp-2">
-                      <Link href={`/blog/${relatedPost.id}`} className="hover:text-green-600 transition-colors">
+                      <Link href={`/blog/${'slug' in relatedPost ? relatedPost.slug : relatedPost.id}`} className="hover:text-green-600 transition-colors">
                         {relatedPost.title}
                       </Link>
                     </h4>

@@ -193,7 +193,7 @@ export default async function BlogPage() {
                       </div>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                      <Link href={`/blog/${post.id}`} className="hover:text-green-600 transition-colors">
+                      <Link href={`/blog/${post.slug || post.id}`} className="hover:text-green-600 transition-colors">
                         {post.title}
                       </Link>
                     </h3>
@@ -204,7 +204,7 @@ export default async function BlogPage() {
                         <span>{post.author}</span>
                       </div>
                       <Link 
-                        href={`/blog/${post.id}`}
+                        href={`/blog/${post.slug || post.id}`}
                         className="inline-flex items-center gap-1 text-green-600 hover:text-green-700 font-medium text-sm"
                       >
                         Read More <ArrowRight className="w-4 h-4" />
@@ -266,7 +266,7 @@ export default async function BlogPage() {
                     </div>
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
-                    <Link href={`/blog/${post.id}`} className="hover:text-green-600 transition-colors">
+                    <Link href={`/blog/${post.slug || post.id}`} className="hover:text-green-600 transition-colors">
                       {post.title}
                     </Link>
                   </h3>
@@ -277,7 +277,7 @@ export default async function BlogPage() {
                       <span>{post.author}</span>
                     </div>
                     <Link 
-                      href={`/blog/${post.id}`}
+                      href={`/blog/${post.slug || post.id}`}
                       className="inline-flex items-center gap-1 text-green-600 hover:text-green-700 font-medium text-sm"
                     >
                       Read <ArrowRight className="w-4 h-4" />

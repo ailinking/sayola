@@ -28,7 +28,7 @@ const WordLookupPopup: React.FC<WordLookupPopupProps> = ({
 }) => {
   return (
     <div
-      className="fixed z-50 bg-white border border-gray-300 rounded-lg shadow-lg p-4 max-w-sm"
+      className="linkable-text-popup fixed z-50 bg-white border border-gray-300 rounded-lg shadow-lg p-4 max-w-sm"
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
@@ -116,7 +116,6 @@ const LinkableText: React.FC<LinkableTextProps> = ({
 
   const handleWordClick = useCallback(async (word: string, event: React.MouseEvent) => {
     event.preventDefault();
-    event.stopPropagation();
     
     const normalizedWord = DictionaryService.normalizeWord(word.toLowerCase());
     
@@ -173,9 +172,13 @@ const LinkableText: React.FC<LinkableTextProps> = ({
 
   // Close popup when clicking outside
   React.useEffect(() => {
-    const handleClickOutside = () => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (popup) {
-        closePopup();
+        const target = event.target as HTMLElement;
+        // Check if the click is outside the popup and not on a LinkableText button
+        if (!target.closest('.linkable-text-popup') && !target.closest('.linkable-text-button')) {
+          closePopup();
+        }
       }
     };
 
@@ -218,7 +221,7 @@ const LinkableText: React.FC<LinkableTextProps> = ({
           <button
             key={`${word}-${startIndex}`}
             onClick={(e) => handleWordClick(word, e)}
-            className="text-blue-600 hover:text-blue-800 hover:underline cursor-pointer transition-colors"
+            className="linkable-text-button text-blue-600 hover:text-blue-800 hover:underline cursor-pointer transition-colors"
             title={`Look up "${word}"`}
           >
             {word}
