@@ -1,3 +1,12 @@
+interface StructuredData {
+  '@context': string;
+  '@graph': Array<{
+    '@type': string;
+    '@id'?: string;
+    [key: string]: unknown;
+  }>;
+}
+
 interface SEOMetadata {
   title: string;
   description: string;
@@ -17,7 +26,7 @@ interface SEOMetadata {
     description: string;
     image?: string;
   };
-  structuredData: any;
+  structuredData: StructuredData;
   robots: string;
   alternateLanguages?: { hreflang: string; href: string }[];
 }
@@ -213,7 +222,7 @@ export class SEOOptimizer {
     category: string,
     tags: string[],
     publishedAt: string
-  ): any {
+  ): StructuredData {
     const url = `${this.baseUrl}/blog/${slug}`;
     const imageUrl = `${this.baseUrl}/api/og?title=${encodeURIComponent(title)}&category=${encodeURIComponent(category)}`;
     

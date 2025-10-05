@@ -200,7 +200,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       siteName: 'Sayola',
       images: [
         {
-          url: ('image' in post ? post.image : '/blog/default.jpg'),
+          url: ('image' in post ? post.image || '/blog/default.jpg' : '/blog/default.jpg'),
           width: 1200,
           height: 630,
           alt: post.title,
@@ -211,7 +211,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: [('image' in post ? post.image : '/blog/default.jpg')],
+      images: [('image' in post ? post.image || '/blog/default.jpg' : '/blog/default.jpg')],
     },
     alternates: {
       canonical: `/blog/${post.id}`,

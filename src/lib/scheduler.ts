@@ -1,4 +1,4 @@
-import { blogGenerator } from './blogGenerator';
+import { blogGenerator, BlogPost } from './blogGenerator';
 
 export interface ScheduledJob {
   id: string;
@@ -55,7 +55,7 @@ export class JobScheduler {
     }
   }
 
-  private async updateBlogPages(newPost: any): Promise<void> {
+  private async updateBlogPages(newPost: BlogPost): Promise<void> {
     // This would update the blog listing page and sitemap
     // For now, we'll just log the action
     console.log(`[${new Date().toISOString()}] Blog pages would be updated with new post: ${newPost.slug}`);

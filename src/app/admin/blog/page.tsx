@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Calendar, Clock, Play, Pause, RefreshCw, FileText, Tag, User, Eye } from 'lucide-react';
+import { Calendar, Clock, Play, Pause, RefreshCw, FileText, Tag, Eye } from 'lucide-react';
 
 interface BlogPost {
   id: string;

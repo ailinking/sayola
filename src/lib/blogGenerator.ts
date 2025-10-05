@@ -6,6 +6,30 @@ import { AutoTagger } from './autoTagger';
 import { InterlinkingSystem } from './interlinkingSystem';
 import { UniquenessValidator } from './uniquenessValidator';
 
+interface SEOMetadata {
+  title: string;
+  description: string;
+  keywords: string[];
+  canonicalUrl: string;
+  openGraph: {
+    title: string;
+    description: string;
+    type: string;
+    url: string;
+    image?: string;
+    siteName: string;
+  };
+  twitter: {
+    card: string;
+    title: string;
+    description: string;
+    image?: string;
+  };
+  structuredData: unknown;
+  robots: string;
+  alternateLanguages?: { hreflang: string; href: string }[];
+}
+
 // Types for blog post structure
 export interface BlogPost {
   id: string;
@@ -24,7 +48,8 @@ export interface BlogPost {
   keywords: string[];
   slug: string;
   relatedPosts: string[];
-  seoMetadata?: any;
+  image?: string;
+  seoMetadata?: SEOMetadata;
 }
 
 export interface BlogTopic {
@@ -195,7 +220,7 @@ export class BlogGenerator {
     return `${minutes} min read`;
   }
 
-  private generateSEOKeywords(topic: BlogTopic, content: string): string[] {
+  private generateSEOKeywords(topic: BlogTopic): string[] {
     const baseKeywords = [
       'Portuguese learning',
       'European Portuguese',
@@ -253,10 +278,9 @@ export class BlogGenerator {
       .join('\n\n');
   }
 
-  private regenerateUniqueContent(topic: BlogTopic, recommendations: string[]): string {
+  private regenerateUniqueContent(topic: BlogTopic): string {
     // Apply recommendations to create more unique content
     const uniqueIntro = this.generateUniqueIntroduction(topic);
-    const uniqueSections = this.generateUniqueSections(topic);
     
     const sections = [
       {
@@ -312,8 +336,14 @@ export class BlogGenerator {
     return sections[Math.floor(Math.random() * sections.length)];
   }
 
-  private applyUniquenessModifications(content: string, duplicateSegments: any[]): string {
+  private applyUniquenessModifications(content: string, duplicateContent: Array<{postId: string; title: string; similarityPercentage: number; duplicateSegments: string[]}>): string {
     let modifiedContent = content;
+    
+    // Extract all duplicate segments from the duplicateContent array
+    const allDuplicateSegments: string[] = [];
+    duplicateContent.forEach(duplicate => {
+      allDuplicateSegments.push(...duplicate.duplicateSegments);
+    });
     
     // Replace common phrases with alternatives
     const replacements = [
@@ -332,6 +362,21 @@ export class BlogGenerator {
         new RegExp(replacement.from, 'gi'),
         replacement.to
       );
+    });
+    
+    // Apply modifications to duplicate segments
+    allDuplicateSegments.forEach(segment => {
+      if (modifiedContent.includes(segment)) {
+        // Add variation to duplicate segments by inserting unique phrases
+        const variations = [
+          'specifically in Portuguese contexts',
+          'particularly for Portuguese learners',
+          'with a focus on Portuguese language nuances',
+          'considering Portuguese cultural aspects'
+        ];
+        const randomVariation = variations[Math.floor(Math.random() * variations.length)];
+        modifiedContent = modifiedContent.replace(segment, `${segment} ${randomVariation}`);
+      }
     });
     
     return modifiedContent;
@@ -381,7 +426,7 @@ export class BlogGenerator {
     // If content is not unique enough, regenerate with modifications
     if (!uniquenessResult.isUnique) {
       console.log(`Content similarity detected (${Math.round(uniquenessResult.similarityScore * 100)}%). Regenerating...`);
-      content = this.regenerateUniqueContent(topic, uniquenessResult.recommendations);
+      content = this.regenerateUniqueContent(topic);
       
       // Validate again
       const secondValidation = this.uniquenessValidator.validateUniqueness(
