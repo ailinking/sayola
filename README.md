@@ -51,7 +51,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/sayola.git
+   git clone https://github.com/your-username/sayola.git
    cd sayola
    ```
 
@@ -228,9 +228,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Documentation**: [Wiki](https://github.com/yourusername/sayola/wiki)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/sayola/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/sayola/discussions)
+- **Documentation**: [README](README.md) • [Contributing](CONTRIBUTING.md) • [Configuration Guide](configuration-guide.md)
+- **Issues**: [GitHub Issues](https://github.com/your-username/sayola/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/your-username/sayola/discussions)
+- **Security**: [Security Policy](SECURITY.md)
 
 ## 🗺️ Roadmap
 

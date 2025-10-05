@@ -1,88 +1,88 @@
-# Sayola 功能测试清单
+# Sayola Feature Testing Checklist
 
-## ✅ 已完成的功能测试
+## ✅ Completed Feature Tests
 
-### 1. 构建和部署
-- [x] TypeScript 编译成功
-- [x] ESLint 检查通过（仅警告，无错误）
-- [x] Next.js 构建成功
-- [x] 开发服务器正常启动
+### 1. Build and Deployment
+- [x] TypeScript compilation successful
+- [x] ESLint checks passed (warnings only, no errors)
+- [x] Next.js build successful
+- [x] Development server starts normally
 
-### 2. 核心功能
+### 2. Core Features
 
-#### 搜索功能 🔍
-- [x] 搜索页面正常加载
-- [x] URL 参数搜索正常工作 (`/search?q=obrigado`)
-- [x] Suspense 边界正确实现
-- [ ] 需要测试：实际搜索结果显示
-- [ ] 需要测试：搜索历史功能
+#### Search Functionality 🔍
+- [x] Search page loads normally
+- [x] URL parameter search works correctly (`/search?q=obrigado`)
+- [x] Suspense boundaries properly implemented
+- [ ] To test: Actual search results display
+- [ ] To test: Search history functionality
 
-#### 音频发音功能 🔊
-- [x] Google Cloud TTS API 集成完成
-- [x] 音频播放组件实现
-- [ ] 需要测试：实际音频播放（需要 API 密钥）
+#### Audio Pronunciation 🔊
+- [x] Google Cloud TTS API integration completed
+- [x] Audio playback component implemented
+- [ ] To test: Actual audio playback (requires API key)
 
-#### 单词对比功能 ⚖️
-- [x] 对比页面实现
-- [x] TypeScript 类型安全修复
-- [ ] 需要测试：实际对比功能
+#### Word Comparison ⚖️
+- [x] Comparison page implemented
+- [x] TypeScript type safety fixes
+- [ ] To test: Actual comparison functionality
 
-#### 每日学习内容 📚
-- [x] 每日内容生成系统实现
-- [x] 本地存储集成
-- [ ] 需要测试：内容生成和显示
+#### Daily Learning Content 📚
+- [x] Daily content generation system implemented
+- [x] Local storage integration
+- [ ] To test: Content generation and display
 
-#### 用户配置 👤
-- [x] 配置页面实现
-- [x] 主题切换功能
-- [ ] 需要测试：设置保存和加载
+#### User Configuration 👤
+- [x] Configuration page implemented
+- [x] Theme switching functionality
+- [ ] To test: Settings save and load
 
-## 🎯 下一步测试计划
+## 🎯 Next Testing Plan
 
-1. **搜索功能深度测试**
-   - 测试各种葡萄牙语单词搜索
-   - 验证搜索结果格式
-   - 测试搜索历史保存
+1. **Search Functionality Deep Testing**
+   - Test various Portuguese word searches
+   - Verify search result formats
+   - Test search history saving
 
-2. **音频功能测试**
-   - 配置 Google Cloud TTS API 密钥
-   - 测试音频播放功能
-   - 验证不同语音选项
+2. **Audio Functionality Testing**
+   - Configure Google Cloud TTS API key
+   - Test audio playback functionality
+   - Verify different voice options
 
-3. **对比功能测试**
-   - 测试两个单词的对比
-   - 验证发音对比
-   - 测试定义对比
+3. **Comparison Functionality Testing**
+   - Test two-word comparison
+   - Verify pronunciation comparison
+   - Test definition comparison
 
-4. **每日内容测试**
-   - 验证内容生成
-   - 测试进度跟踪
-   - 检查本地存储
+4. **Daily Content Testing**
+   - Verify content generation
+   - Test progress tracking
+   - Check local storage
 
-5. **用户体验测试**
-   - 测试响应式设计
-   - 验证主题切换
-   - 检查导航流畅性
+5. **User Experience Testing**
+   - Test responsive design
+   - Verify theme switching
+   - Check navigation smoothness
 
-## 📝 已知问题和改进
+## 📝 Known Issues and Improvements
 
-### 警告（非阻塞）
-- 一些未使用的变量警告
-- useEffect 依赖项警告
-- 可以在后续版本中优化
+### Warnings (Non-blocking)
+- Some unused variable warnings
+- useEffect dependency warnings
+- Can be optimized in future versions
 
-### 功能增强建议
-- 添加更多语音选项
-- 实现离线模式
-- 添加学习进度统计
-- 实现用户账户系统
+### Feature Enhancement Suggestions
+- Add more voice options
+- Implement offline mode
+- Add learning progress statistics
+- Implement user account system
 
-## 🚀 部署就绪状态
+## 🚀 Deployment Ready Status
 
-- ✅ 构建成功
-- ✅ 无阻塞错误
-- ✅ 核心功能实现
-- ✅ 文档完整
-- ✅ 环境配置示例提供
+- ✅ Build successful
+- ✅ No blocking errors
+- ✅ Core features implemented
+- ✅ Documentation complete
+- ✅ Environment configuration examples provided
 
-**状态：准备部署到生产环境**
+**Status: Ready for production deployment**

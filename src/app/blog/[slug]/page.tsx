@@ -317,9 +317,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Article Header */}
         <header className="mb-12">
           <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
-            <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">
+            <Link 
+              href={`/blog?category=${encodeURIComponent(post.category)}`}
+              className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium hover:bg-green-200 transition-colors"
+            >
               {post.category}
-            </span>
+            </Link>
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
               <time dateTime={post.publishedAt}>
@@ -336,7 +339,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
             <div className="flex items-center gap-1">
               <BookOpen className="w-4 h-4" />
-              <span>{('wordCount' in post ? post.wordCount : 'N/A')} words</span>
+              <span>
+                {('wordCount' in post && post.wordCount) || 
+                 (post.content ? Math.ceil(post.content.replace(/<[^>]*>/g, '').split(/\s+/).filter(word => word.length > 0).length * 0.8) : 'N/A')
+                } words
+              </span>
             </div>
           </div>
           
@@ -382,13 +389,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Tags</h3>
           <div className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
-              <span 
+              <Link
                 key={tag}
-                className="inline-flex items-center gap-1 bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors cursor-pointer"
+                href={`/blog?tag=${encodeURIComponent(tag)}`}
+                className="inline-flex items-center gap-1 bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-green-100 hover:text-green-800 transition-colors"
               >
                 <Tag className="w-3 h-3" />
                 {tag}
-              </span>
+              </Link>
             ))}
           </div>
         </div>
