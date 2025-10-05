@@ -107,7 +107,7 @@ function SearchContent() {
     }
     loadSearchHistory();
     loadCollectedWords();
-  }, [initialQuery, handleSearch]);
+  }, [initialQuery]);
 
   const loadSearchHistory = () => {
     try {
