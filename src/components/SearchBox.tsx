@@ -20,8 +20,11 @@ export default function SearchBox({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (query.trim()) {
-      onSearch(query.trim());
+    const trimmedQuery = query.trim();
+    if (trimmedQuery) {
+      onSearch(trimmedQuery);
+      // Don't clear the input so user can see what they searched for
+      // setQuery('');
     }
   };
 

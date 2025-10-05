@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sayola - Learn Portuguese",
-  description: "Master Portuguese with AI-powered dictionary, pronunciation, and daily learning content",
+  title: "Sayola - Learn European Portuguese",
+  description: "Master European Portuguese with AI-powered dictionary, pronunciation, and daily learning content",
   keywords: ["Portuguese", "language learning", "dictionary", "pronunciation", "TTS", "education"],
   authors: [{ name: "Sayola Team" }],
   icons: {

@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { AlertCircle, BookOpen, Lightbulb } from 'lucide-react';
 import SearchBox from '@/components/SearchBox';
 import WordCard from '@/components/WordCard';
-import { DictionaryService, WordData } from '@/lib/dictionaryApi';
+import { DictionaryService, type WordData } from '@/lib/dictionaryApi';
 
 function SearchContent() {
   const searchParams = useSearchParams();
@@ -13,6 +13,7 @@ function SearchContent() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
+  const [collectedWords, setCollectedWords] = useState<string[]>([]);
 
   // Get initial query from URL params
   const initialQuery = searchParams.get('q') || '';
@@ -24,8 +25,46 @@ function SearchContent() {
     localStorage.setItem('searchHistory', JSON.stringify(newHistory));
   }, [searchHistory]);
 
+  const handleCollectWord = useCallback((word: string) => {
+    const normalizedWord = DictionaryService.normalizeWord(word);
+    let newCollectedWords;
+    
+    if (collectedWords.includes(normalizedWord)) {
+      // Remove from collection
+      newCollectedWords = collectedWords.filter(w => w !== normalizedWord);
+    } else {
+      // Add to collection with timestamp for SRS
+      newCollectedWords = [normalizedWord, ...collectedWords];
+      
+      // Store word with metadata for SRS
+      const wordData = {
+        word: normalizedWord,
+        addedAt: Date.now(),
+        reviewCount: 0,
+        lastReviewed: null,
+        nextReview: Date.now() + (24 * 60 * 60 * 1000), // Next day
+        difficulty: 0, // Will be updated based on user performance
+        interval: 1 // Days until next review
+      };
+      
+      // Save to SRS collection
+      const srsCollection = JSON.parse(localStorage.getItem('srsCollection') || '[]');
+      const existingIndex = srsCollection.findIndex((item: any) => item.word === normalizedWord);
+      
+      if (existingIndex === -1) {
+        srsCollection.push(wordData);
+        localStorage.setItem('srsCollection', JSON.stringify(srsCollection));
+      }
+    }
+    
+    setCollectedWords(newCollectedWords);
+    localStorage.setItem('collectedWords', JSON.stringify(newCollectedWords));
+  }, [collectedWords]);
+
   const handleSearch = useCallback(async (query: string) => {
-    if (!query.trim()) return;
+    if (!query.trim()) {
+      return;
+    }
 
     setLoading(true);
     setError(null);
@@ -37,22 +76,37 @@ function SearchContent() {
       if (result.success && result.data) {
         setSearchResults(result.data);
         addToSearchHistory(query);
+        
+        // Auto-collect Portuguese words from local database
+        const searchedWord = DictionaryService.normalizeWord(query);
+        if (result.data.some(wordData => 
+          wordData.sourceUrls?.some(url => url.includes('Local'))
+        )) {
+          // This is a Portuguese word from our local database
+          setTimeout(() => {
+            if (!collectedWords.includes(searchedWord)) {
+              handleCollectWord(searchedWord);
+            }
+          }, 1000); // Auto-collect after 1 second
+        }
       } else {
         setError(result.error || 'No results found');
       }
-    } catch {
+    } catch (error) {
+      console.error('Search error:', error);
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
-  }, [addToSearchHistory]);
+  }, [addToSearchHistory, collectedWords, handleCollectWord]);
 
   useEffect(() => {
     if (initialQuery) {
       handleSearch(initialQuery);
     }
     loadSearchHistory();
-  }, [initialQuery, handleSearch]);
+    loadCollectedWords();
+  }, [initialQuery]);
 
   const loadSearchHistory = () => {
     try {
@@ -62,6 +116,17 @@ function SearchContent() {
       }
     } catch (error) {
       console.error('Error loading search history:', error);
+    }
+  };
+
+  const loadCollectedWords = () => {
+    try {
+      const saved = localStorage.getItem('collectedWords');
+      if (saved) {
+        setCollectedWords(JSON.parse(saved));
+      }
+    } catch (error) {
+      console.error('Error loading collected words:', error);
     }
   };
 
@@ -133,6 +198,7 @@ function SearchContent() {
                 key={index}
                 wordData={wordData}
                 onPlayAudio={handlePlayAudio}
+                onCollectWord={handleCollectWord}
               />
             ))}
           </div>
