@@ -2,17 +2,39 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Calendar, Clock, User, ArrowLeft, Share2, BookOpen, Tag } from 'lucide-react';
-import { blogGenerator } from '@/lib/blogGenerator';
+import { blogGenerator, BlogPost } from '@/lib/blogGenerator';
 
 // Load blog posts from the generator
 async function getBlogPosts() {
   return await blogGenerator.getAllPosts();
 }
 
+// Define a type for sample blog posts that matches our local structure
+interface SampleBlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  publishedAt: string;
+  updatedAt: string;
+  readTime: string;
+  category: string;
+  tags: string[];
+  featured: boolean;
+  image?: string;
+  wordCount?: number;
+}
+
+// Union type for all post types
+type AnyBlogPost = BlogPost | SampleBlogPost;
+
 // Sample blog posts data (fallback for development)
-const sampleBlogPosts = [
+const sampleBlogPosts: SampleBlogPost[] = [
   {
     id: 'portuguese-pronunciation-guide',
+    slug: 'portuguese-pronunciation-guide',
     title: 'Mastering European Portuguese Pronunciation: A Complete Guide',
     excerpt: 'Learn the key differences between European and Brazilian Portuguese pronunciation, including nasal sounds, vowel reduction, and consonant clusters.',
     content: `
@@ -77,6 +99,7 @@ const sampleBlogPosts = [
   },
   {
     id: 'portuguese-verb-conjugation',
+    slug: 'portuguese-verb-conjugation',
     title: 'Portuguese Verb Conjugation Made Simple',
     excerpt: 'Master the complex world of Portuguese verb conjugations with our step-by-step approach and practical examples.',
     content: `
@@ -130,6 +153,7 @@ const sampleBlogPosts = [
   },
   {
     id: 'portuguese-culture-traditions',
+    slug: 'portuguese-culture-traditions',
     title: 'Understanding Portuguese Culture Through Language',
     excerpt: 'Explore how Portuguese cultural traditions and customs are reflected in the language, from fado music to family values.',
     content: `
@@ -237,9 +261,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 // Generate static params for all blog posts
 export async function generateStaticParams() {
   const blogPosts = await getBlogPosts();
-  const allPosts = [...blogPosts, ...sampleBlogPosts];
+  const allPosts: AnyBlogPost[] = [...blogPosts, ...sampleBlogPosts];
   return allPosts.map((post) => ({
-    slug: 'slug' in post ? post.slug : post.id,
+    slug: post.slug || post.id,
   }));
 }
 
@@ -248,7 +272,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const blogPosts = await getBlogPosts();
   
   // First try to find by slug in blogPosts, then by id in blogPosts, then by id in sampleBlogPosts
-  const post = blogPosts.find(p => p.slug === resolvedParams.slug) || 
+  const post: AnyBlogPost | undefined = blogPosts.find(p => p.slug === resolvedParams.slug) || 
                blogPosts.find(p => p.id === resolvedParams.slug) ||
                sampleBlogPosts.find(p => p.id === resolvedParams.slug);
 
@@ -256,11 +280,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const allPosts = [...blogPosts, ...sampleBlogPosts];
+  const allPosts: AnyBlogPost[] = [...blogPosts, ...sampleBlogPosts];
   const relatedPosts = allPosts
     .filter(p => {
-      const postId = 'slug' in p ? p.slug : p.id;
-      const currentId = 'slug' in post ? post.slug : post.id;
+      const postId = p.slug || p.id;
+      const currentId = post.slug || post.id;
       return postId !== currentId && (p.category === post.category || p.tags.some((tag: string) => post.tags.includes(tag)));
     })
     .slice(0, 3);
@@ -380,7 +404,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <div className="p-4">
                     <span className="text-xs text-green-600 font-medium">{relatedPost.category}</span>
                     <h4 className="font-semibold text-gray-900 mb-2 line-clamp-2">
-                      <Link href={`/blog/${'slug' in relatedPost ? relatedPost.slug : relatedPost.id}`} className="hover:text-green-600 transition-colors">
+                      <Link href={`/blog/${relatedPost.slug || relatedPost.id}`} className="hover:text-green-600 transition-colors">
                         {relatedPost.title}
                       </Link>
                     </h4>

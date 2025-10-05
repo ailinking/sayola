@@ -65,6 +65,7 @@ async function getBlogPosts() {
 const sampleBlogPosts = [
   {
     id: 'portuguese-pronunciation-guide',
+    slug: 'portuguese-pronunciation-guide',
     title: 'Mastering European Portuguese Pronunciation: A Complete Guide',
     excerpt: 'Learn the key differences between European and Brazilian Portuguese pronunciation, including nasal sounds, vowel reduction, and consonant clusters.',
     content: 'Full content would be here...',
@@ -78,6 +79,7 @@ const sampleBlogPosts = [
   },
   {
     id: 'portuguese-verb-conjugation',
+    slug: 'portuguese-verb-conjugation',
     title: 'Portuguese Verb Conjugation Made Simple',
     excerpt: 'Master the complex world of Portuguese verb conjugations with our step-by-step approach and practical examples.',
     content: 'Full content would be here...',
@@ -91,6 +93,7 @@ const sampleBlogPosts = [
   },
   {
     id: 'portuguese-culture-traditions',
+    slug: 'portuguese-culture-traditions',
     title: 'Understanding Portuguese Culture Through Language',
     excerpt: 'Explore how Portuguese cultural traditions and customs are reflected in the language, from fado music to family values.',
     content: 'Full content would be here...',
@@ -104,6 +107,7 @@ const sampleBlogPosts = [
   },
   {
     id: 'common-portuguese-mistakes',
+    slug: 'common-portuguese-mistakes',
     title: '10 Common Mistakes English Speakers Make in Portuguese',
     excerpt: 'Avoid these frequent pitfalls when learning Portuguese and accelerate your language learning journey.',
     content: 'Full content would be here...',
