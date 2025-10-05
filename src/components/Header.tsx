@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Search, BookOpen, Users, User, Calendar, Heart } from 'lucide-react';
+import { Search, BookOpen, Users, User, Calendar, Heart, FileText } from 'lucide-react';
 
 export default function Header() {
   return (
@@ -51,6 +51,13 @@ export default function Header() {
             >
               <Calendar className="w-4 h-4" />
               <span>Daily</span>
+            </Link>
+            <Link 
+              href="/blog" 
+              className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-1"
+            >
+              <FileText className="w-4 h-4" />
+              <span>Blog</span>
             </Link>
             <Link 
               href="/profile" 

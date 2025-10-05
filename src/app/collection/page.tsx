@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Heart, BookOpen, Clock, TrendingUp, Play, BarChart3, Download, Upload, Trash2 } from 'lucide-react';
 import { SRSEngine, SRSCard, SRSStorage, ReviewResult } from '@/lib/srsEngine';
-import { DictionaryService } from '@/lib/dictionaryApi';
+import { DictionaryService, type WordData } from '@/lib/dictionaryApi';
 import WordCard from '@/components/WordCard';
 
 export default function CollectionPage() {
@@ -22,7 +22,7 @@ export default function CollectionPage() {
     totalReviews: 0
   });
   const [selectedTab, setSelectedTab] = useState<'overview' | 'review' | 'manage'>('overview');
-  const [wordData, setWordData] = useState<any>(null);
+  const [wordData, setWordData] = useState<WordData | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -114,7 +114,7 @@ export default function CollectionPage() {
         SRSStorage.saveCards(importedCards);
         loadData();
         alert(`Successfully imported ${importedCards.length} words!`);
-      } catch (error) {
+      } catch {
         alert('Import failed: Invalid file format');
       }
     };

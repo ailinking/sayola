@@ -29,7 +29,7 @@ interface Meaning {
 interface Inflection {
   form: string;
   type: string;
-  example: string;
+  example?: string;
 }
 
 interface WordData {
@@ -294,9 +294,11 @@ export default function WordCard({ wordData, onPlayAudio, onCollectWord, classNa
                         <LinkableText text={inflection.form} />
                       </div>
                       <div className="text-xs text-purple-600">{inflection.type}</div>
-                      <div className="text-sm text-gray-700 italic">
-                        <LinkableText text={inflection.example} />
-                      </div>
+                      {inflection.example && (
+                        <div className="text-sm text-gray-700 italic">
+                          <LinkableText text={inflection.example} />
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

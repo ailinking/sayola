@@ -6,6 +6,7 @@ import { AlertCircle, BookOpen, Lightbulb } from 'lucide-react';
 import SearchBox from '@/components/SearchBox';
 import WordCard from '@/components/WordCard';
 import { DictionaryService, type WordData } from '@/lib/dictionaryApi';
+import { type SRSCard } from '@/lib/srsEngine';
 
 function SearchContent() {
   const searchParams = useSearchParams();
@@ -49,7 +50,7 @@ function SearchContent() {
       
       // Save to SRS collection
       const srsCollection = JSON.parse(localStorage.getItem('srsCollection') || '[]');
-      const existingIndex = srsCollection.findIndex((item: any) => item.word === normalizedWord);
+      const existingIndex = srsCollection.findIndex((item: SRSCard) => item.word === normalizedWord);
       
       if (existingIndex === -1) {
         srsCollection.push(wordData);
@@ -106,7 +107,7 @@ function SearchContent() {
     }
     loadSearchHistory();
     loadCollectedWords();
-  }, [initialQuery]);
+  }, [initialQuery, handleSearch]);
 
   const loadSearchHistory = () => {
     try {

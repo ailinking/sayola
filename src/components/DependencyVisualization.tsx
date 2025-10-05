@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Eye, EyeOff, Info, RotateCcw, ZoomIn, ZoomOut, Download } from 'lucide-react';
-import { DependencyParser, ParsedSentence, Token, DependencyRelation } from '../lib/dependencyParser';
+import { DependencyParser, ParsedSentence, Token } from '../lib/dependencyParser';
 import { CEFRBadge } from './CEFRBadge';
 
 interface DependencyVisualizationProps {
@@ -48,18 +48,7 @@ export const DependencyVisualization: React.FC<DependencyVisualizationProps> = (
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
-  useEffect(() => {
-    if (sentence.trim()) {
-      parseSentence();
-    }
-  }, [sentence, useApi]);
-
-  // Test API connection on mount
-  useEffect(() => {
-    testApiConnection();
-  }, []);
-  
-  const parseSentence = async () => {
+  const parseSentence = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -72,19 +61,30 @@ export const DependencyVisualization: React.FC<DependencyVisualizationProps> = (
     } finally {
       setLoading(false);
     }
-  };
+  }, [sentence, useApi]);
 
   // Test API connectivity
-  const testApiConnection = async () => {
+  const testApiConnection = useCallback(async () => {
     try {
       const { DependencyApiService } = await import('../lib/dependencyApiService');
       const apiService = new DependencyApiService();
       const result = await apiService.testConnection();
       setApiStatus(result.success ? 'connected' : 'disconnected');
-    } catch (error) {
+    } catch {
       setApiStatus('disconnected');
     }
-  };
+  }, []);
+  
+  useEffect(() => {
+    if (sentence.trim()) {
+      parseSentence();
+    }
+  }, [sentence, useApi, parseSentence]);
+
+  // Test API connection on mount
+  useEffect(() => {
+    testApiConnection();
+  }, [testApiConnection]);
   
   const handleTokenClick = (token: Token) => {
     if (interactive) {
@@ -327,7 +327,6 @@ const DependencyTree: React.FC<DependencyTreeProps> = ({
   const tokenWidth = 120;
   const tokenHeight = 60;
   const tokenSpacing = 20;
-  const arcOffset = 80;
   
   const svgWidth = parsed.tokens.length * (tokenWidth + tokenSpacing);
   const svgHeight = 300;

@@ -50,6 +50,15 @@ export interface GrammarProperties {
   examples: string[];
 }
 
+export interface GrammarRule {
+  id: string;
+  name: string;
+  description: string;
+  examples: string[];
+  exceptions: string[];
+  difficulty: string;
+}
+
 export type GrammarNodeType = 
   | 'word' 
   | 'concept' 
@@ -183,7 +192,7 @@ export class GrammarNetworkService {
     this.expandNetwork(centerNode, nodes, edges, depth, 1);
     
     // Position nodes using force-directed layout
-    this.positionNodes(nodes, edges);
+    this.positionNodes(nodes);
     
     const metadata: NetworkMetadata = {
       totalNodes: nodes.length,
@@ -410,7 +419,7 @@ export class GrammarNetworkService {
   /**
    * Find grammar rules applicable to a word
    */
-  private findApplicableRules(word: string, pos: string): Array<any> {
+  private findApplicableRules(word: string, pos: string): Array<GrammarRule> {
     const applicableRules = [];
     
     if (pos === 'substantivo' || pos === 'adjetivo') {
@@ -481,12 +490,12 @@ export class GrammarNetworkService {
   /**
    * Position nodes using a simple force-directed algorithm
    */
-  private positionNodes(nodes: GrammarNode[], edges: GrammarEdge[]): void {
+  private positionNodes(nodes: GrammarNode[]): void {
     // Simple circular layout for demo
     // In a real implementation, you'd use a proper force-directed algorithm
     
     const centerNode = nodes[0];
-    let angleStep = (2 * Math.PI) / Math.max(nodes.length - 1, 1);
+    const angleStep = (2 * Math.PI) / Math.max(nodes.length - 1, 1);
     
     nodes.slice(1).forEach((node, index) => {
       const angle = index * angleStep;

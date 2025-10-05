@@ -83,7 +83,7 @@ const PORTUGUESE_CEFR_DATABASE: Record<string, CEFRLevel> = {
   // A1 - Basic everyday words (1000 most common words)
   'o': 'A1', 'a': 'A1', 'de': 'A1', 'e': 'A1', 'do': 'A1', 'da': 'A1', 'em': 'A1', 'um': 'A1', 'para': 'A1', 'é': 'A1',
   'com': 'A1', 'não': 'A1', 'uma': 'A1', 'os': 'A1', 'no': 'A1', 'se': 'A1', 'na': 'A1', 'por': 'A1', 'mais': 'A1', 'as': 'A1',
-  'dos': 'A1', 'como': 'A1', 'mas': 'A1', 'foi': 'A1', 'ao': 'A1', 'ele': 'A1', 'das': 'A1', 'tem': 'A1', 'à': 'A1', 'seu': 'A1',
+  'dos': 'A1', 'como': 'A1', 'mas': 'A1', 'foi': 'A1', 'ao': 'A1', 'das': 'A1', 'tem': 'A1', 'à': 'A1', 'seu': 'A1',
   'casa': 'A1', 'água': 'A1', 'sim': 'A1', 'obrigado': 'A1', 'obrigada': 'A1', 'por favor': 'A1', 'desculpe': 'A1',
   'bom': 'A1', 'boa': 'A1', 'dia': 'A1', 'noite': 'A1', 'manhã': 'A1', 'tarde': 'A1', 'hoje': 'A1', 'ontem': 'A1', 'amanhã': 'A1',
   'eu': 'A1', 'você': 'A1', 'ele': 'A1', 'ela': 'A1', 'nós': 'A1', 'vocês': 'A1', 'eles': 'A1', 'elas': 'A1',
@@ -97,7 +97,7 @@ const PORTUGUESE_CEFR_DATABASE: Record<string, CEFRLevel> = {
   'comprar': 'A2', 'vender': 'A2', 'dinheiro': 'A2', 'preço': 'A2', 'caro': 'A2', 'barato': 'A2',
   'viajar': 'A2', 'viagem': 'A2', 'hotel': 'A2', 'restaurante': 'A2', 'comida': 'A2', 'bebida': 'A2',
   'saúde': 'A2', 'médico': 'A2', 'hospital': 'A2', 'doente': 'A2', 'remédio': 'A2',
-  'cidade': 'A2', 'país': 'A2', 'mundo': 'A2', 'lugar': 'A2', 'rua': 'A2', 'casa': 'A2',
+  'cidade': 'A2', 'país': 'A2', 'mundo': 'A2', 'lugar': 'A2', 'rua': 'A2',
   'amigo': 'A2', 'amiga': 'A2', 'namorado': 'A2', 'namorada': 'A2', 'casado': 'A2', 'solteiro': 'A2',
   'feliz': 'A2', 'triste': 'A2', 'alegre': 'A2', 'nervoso': 'A2', 'calmo': 'A2', 'preocupado': 'A2',
   'importante': 'A2', 'interessante': 'A2', 'difícil': 'A2', 'fácil': 'A2', 'possível': 'A2', 'impossível': 'A2',
@@ -131,7 +131,7 @@ const PORTUGUESE_CEFR_DATABASE: Record<string, CEFRLevel> = {
   
   // C2 - Proficient level
   'heurística': 'C2', 'algorítmico': 'C2', 'estocástico': 'C2', 'determinístico': 'C2', 'probabilístico': 'C2',
-  'epistemológico': 'C2', 'ontológico': 'C2', 'fenomenológico': 'C2', 'hermenêutico': 'C2', 'dialético': 'C2',
+  'ontológico': 'C2', 'fenomenológico': 'C2', 'hermenêutico': 'C2', 'dialético': 'C2',
   'paradigmático': 'C2', 'sintagmático': 'C2', 'diacrônico': 'C2', 'sincrônico': 'C2', 'polissêmico': 'C2',
   'metalinguístico': 'C2', 'metadiscursivo': 'C2', 'metaficcional': 'C2', 'metatextual': 'C2', 'metacrítico': 'C2',
   'incomensurabilidade': 'C2', 'irredutibilidade': 'C2', 'indeterminação': 'C2', 'indecidibilidade': 'C2', 'incompletude': 'C2'

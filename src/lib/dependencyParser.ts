@@ -84,7 +84,7 @@ const DEPREL_DESCRIPTIONS: Record<string, { description: string; color: string }
 export class DependencyParser {
   private posModel: Map<string, string> = new Map();
   private dependencyRules: Map<string, string[]> = new Map();
-  private apiService?: any; // Will be imported dynamically to avoid circular deps
+  private apiService?: import('./dependencyApiService').DependencyApiService; // Will be imported dynamically to avoid circular deps
 
   constructor(useApi = false) {
     this.initializeModels();

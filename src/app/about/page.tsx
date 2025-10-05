@@ -1,6 +1,6 @@
 'use client';
 
-import { BookOpen, Brain, Globe, Heart, Search, Users, Calendar, Network, Database, Code, User } from 'lucide-react';
+import { BookOpen, Brain, Heart, Search, Calendar, Network, Database, Code, User } from 'lucide-react';
 
 export default function AboutPage() {
   return (

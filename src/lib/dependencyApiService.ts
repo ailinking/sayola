@@ -79,7 +79,7 @@ export const API_PROVIDERS = {
 export class DependencyApiService {
   private config: ApiConfig;
   private cache: Map<string, ParsedSentence> = new Map();
-  private requestQueue: Array<{ sentence: string; resolve: Function; reject: Function }> = [];
+  private requestQueue: Array<{ sentence: string; resolve: (value: ApiResponse<ParsedSentence>) => void; reject: (reason?: unknown) => void }> = [];
   private isProcessing = false;
 
   constructor(config: Partial<ApiConfig> = {}) {
@@ -171,7 +171,7 @@ export class DependencyApiService {
         } else {
           errors.push(`Failed to parse: "${sentence}"`);
         }
-      } catch (error) {
+      } catch {
         errors.push(`Error parsing: "${sentence}"`);
       }
     }
@@ -260,7 +260,7 @@ export class DependencyApiService {
         dependencies.push({
           head: this.getHead(index, words),
           dependent: index + 1,
-          relation: this.getRelation(word, index, words),
+          relation: this.getRelation(word, index),
           confidence: 0.8 + Math.random() * 0.2
         });
       }
@@ -326,7 +326,7 @@ export class DependencyApiService {
       tokens,
       dependencies,
       root,
-      complexity: this.determineComplexity(tokens, dependencies),
+      complexity: this.determineComplexity(tokens),
       confidence: apiResult.confidence
     };
   }
@@ -425,7 +425,7 @@ export class DependencyApiService {
   /**
    * Determine sentence complexity
    */
-  private determineComplexity(tokens: Token[], dependencies: DependencyRelation[]): 'simple' | 'compound' | 'complex' {
+  private determineComplexity(tokens: Token[]): 'simple' | 'compound' | 'complex' {
     const verbCount = tokens.filter(t => t.pos === 'VERB').length;
     const conjunctionCount = tokens.filter(t => t.pos === 'CCONJ' || t.pos === 'SCONJ').length;
     
@@ -516,7 +516,7 @@ export class DependencyApiService {
     return Math.max(1, index); // Default to previous word
   }
 
-  private getRelation(word: string, index: number, words: string[]): string {
+  private getRelation(word: string, index: number): string {
     const pos = this.getPOS(word);
     
     if (index === 0) return 'root';

@@ -232,8 +232,8 @@ export class SRSEngine {
   static importCards(data: string): SRSCard[] {
     try {
       const cards = JSON.parse(data);
-      return cards.filter((card: any) => this.isValidCard(card));
-    } catch (error) {
+      return cards.filter((card: unknown) => this.isValidCard(card));
+    } catch {
       throw new Error('Invalid card data format');
     }
   }
@@ -241,17 +241,23 @@ export class SRSEngine {
   /**
    * Validate card structure
    */
-  private static isValidCard(card: any): boolean {
+  private static isValidCard(card: unknown): card is SRSCard {
+    if (typeof card !== 'object' || card === null) {
+      return false;
+    }
+    
+    const cardObj = card as Record<string, unknown>;
+    
     return (
-      typeof card.word === 'string' &&
-      typeof card.addedAt === 'number' &&
-      typeof card.reviewCount === 'number' &&
-      (card.lastReviewed === null || typeof card.lastReviewed === 'number') &&
-      typeof card.nextReview === 'number' &&
-      typeof card.difficulty === 'number' &&
-      typeof card.interval === 'number' &&
-      typeof card.easeFactor === 'number' &&
-      typeof card.streak === 'number'
+      typeof cardObj.word === 'string' &&
+      typeof cardObj.addedAt === 'number' &&
+      typeof cardObj.reviewCount === 'number' &&
+      (cardObj.lastReviewed === null || typeof cardObj.lastReviewed === 'number') &&
+      typeof cardObj.nextReview === 'number' &&
+      typeof cardObj.difficulty === 'number' &&
+      typeof cardObj.interval === 'number' &&
+      typeof cardObj.easeFactor === 'number' &&
+      typeof cardObj.streak === 'number'
     );
   }
 }
@@ -319,5 +325,9 @@ export class SRSStorage {
   static getStats() {
     const cards = this.loadCards();
     return SRSEngine.getStudyStats(cards);
+  }
+
+  static clearAll(): void {
+    this.saveCards([]);
   }
 }

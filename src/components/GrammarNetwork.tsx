@@ -8,9 +8,7 @@ import {
   ZoomOut, 
   RotateCcw, 
   Settings,
-  Info,
-  Eye,
-  EyeOff
+  Info
 } from 'lucide-react';
 import { 
   GrammarNetworkService, 
@@ -79,7 +77,7 @@ export default function GrammarNetworkVisualization({
         setIsLoading(false);
       }
     }
-  }, [word, depth]);
+  }, [word, depth, grammarService]);
   
   // Handle node click
   const handleNodeClick = useCallback((node: GrammarNode) => {

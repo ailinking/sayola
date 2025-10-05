@@ -289,7 +289,7 @@ export function ApiConfig({ onConfigChange, className = '' }: ApiConfigProps) {
               <h4 className="text-sm font-medium text-red-800 mb-2">Connection Errors:</h4>
               <div className="space-y-1">
                 {Object.entries(providerStatuses)
-                  .filter(([_, status]) => status.error)
+                  .filter(([, status]) => status.error)
                   .map(([key, status]) => (
                     <div key={key} className="text-sm text-red-700">
                       <strong>{status.name}:</strong> {status.error}
