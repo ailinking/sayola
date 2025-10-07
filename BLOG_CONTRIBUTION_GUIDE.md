@@ -1,146 +1,146 @@
-# Blog Post 贡献指南
+# Blog Post Contribution Guide
 
-欢迎为 Sayola 葡萄牙语学习平台贡献每日 blog post！我们非常欢迎社区成员分享高质量的葡萄牙语学习内容。
+Welcome to contribute daily blog posts to the Sayola Portuguese learning platform! We warmly welcome community members to share high-quality Portuguese learning content.
 
-## 📝 内容要求
+## 📝 Content Requirements
 
-### 主题范围
-- 葡萄牙语语法和语言规则
-- 葡萄牙文化和传统
-- 实用对话和日常用语
-- 葡萄牙语学习技巧和方法
-- 葡萄牙历史和地理
-- 葡萄牙美食和生活方式
-- 语言学习经验分享
+### Topic Scope
+- Portuguese grammar and language rules
+- Portuguese culture and traditions
+- Practical conversations and daily expressions
+- Portuguese learning tips and methods
+- Portuguese history and geography
+- Portuguese cuisine and lifestyle
+- Language learning experience sharing
 
-### 内容质量标准
-- **原创性**: 必须是原创内容，不得抄袭
-- **准确性**: 语言信息必须准确，建议由母语者或高级学习者审核
-- **实用性**: 内容应对葡萄牙语学习者有实际帮助
-- **结构清晰**: 使用标题、列表和段落合理组织内容
-- **长度适中**: 建议 800-2000 字，阅读时间 2-8 分钟
+### Content Quality Standards
+- **Originality**: Must be original content, no plagiarism
+- **Accuracy**: Language information must be accurate, recommended to be reviewed by native speakers or advanced learners
+- **Practicality**: Content should be practically helpful for Portuguese learners
+- **Clear Structure**: Use headings, lists, and paragraphs to organize content reasonably
+- **Appropriate Length**: Recommended 800-2000 words, reading time 2-8 minutes
 
-### 语言要求
-- 主要语言：中文（简体）
-- 葡萄牙语示例：使用欧洲葡萄牙语标准
-- 音标标注：建议为葡萄牙语词汇提供音标
+### Language Requirements
+- Primary language: English
+- Portuguese examples: Use European Portuguese standards
+- Phonetic notation: Recommended to provide phonetic transcription for Portuguese vocabulary
 
-## 🚀 提交方式
+## 🚀 Submission Methods
 
-### 方式一：GitHub Issue（推荐）
-1. 访问我们的 [GitHub Issues](https://github.com/your-username/sayola/issues)
-2. 点击 "New Issue"
-3. 选择 "Blog Post Submission" 模板
-4. 填写完整的 blog post 内容和元数据
-5. 提交 Issue 等待审核
+### Method 1: GitHub Issue (Recommended)
+1. Visit our [GitHub Issues](https://github.com/your-username/sayola/issues)
+2. Click "New Issue"
+3. Select "Blog Post Submission" template
+4. Fill in complete blog post content and metadata
+5. Submit Issue and wait for review
 
-### 方式二：Pull Request
-1. Fork 本项目
-2. 在 `content/blog/` 目录下创建新的 JSON 文件
-3. 按照模板格式填写内容
-4. 提交 Pull Request
-5. 等待代码审核和合并
+### Method 2: Pull Request
+1. Fork this project
+2. Create a new JSON file in the `content/blog/` directory
+3. Fill in content according to template format
+4. Submit Pull Request
+5. Wait for code review and merge
 
-### 方式三：邮件提交
-- 发送至：blog@sayola.com
-- 邮件主题：[Blog Submission] 你的文章标题
-- 附件：按照模板格式的 JSON 文件
+### Method 3: Email Submission
+- Send to: blog@sayola.com
+- Email subject: [Blog Submission] Your Article Title
+- Attachment: JSON file in template format
 
-## 📋 文件格式要求
+## 📋 File Format Requirements
 
-### JSON 结构
-请参考 `blog-post-template.json` 文件，包含以下必需字段：
+### JSON Structure
+Please refer to the `blog-post-template.json` file, including the following required fields:
 
 ```json
 {
-  "title": "文章标题",
-  "excerpt": "文章摘要（150字以内）",
-  "content": "文章正文（Markdown格式）",
-  "author": "作者姓名",
-  "category": "分类（Beginner/Intermediate/Advanced/Culture）",
-  "tags": ["标签1", "标签2", "标签3"],
-  "seoTitle": "SEO标题",
-  "seoDescription": "SEO描述",
-  "keywords": ["关键词1", "关键词2"]
+  "title": "Article Title",
+  "excerpt": "Article summary (within 150 words)",
+  "content": "Article body (Markdown format)",
+  "author": "Author Name",
+  "category": "Category (Beginner/Intermediate/Advanced/Culture)",
+  "tags": ["Tag1", "Tag2", "Tag3"],
+  "seoTitle": "SEO Title",
+  "seoDescription": "SEO Description",
+  "keywords": ["Keyword1", "Keyword2"]
 }
 ```
 
-### 内容格式
-- 使用 Markdown 语法编写正文
-- 标题层级：使用 ## 作为主标题，### 作为副标题
-- 代码块：使用 ``` 包围葡萄牙语示例
-- 链接：使用相对路径链接到其他 blog posts
+### Content Format
+- Use Markdown syntax to write the body
+- Heading levels: Use ## as main headings, ### as subheadings
+- Code blocks: Use ``` to surround Portuguese examples
+- Links: Use relative paths to link to other blog posts
 
-## ✅ 审核流程
+## ✅ Review Process
 
-### 1. 初步审核（1-2个工作日）
-- 检查格式是否正确
-- 验证内容是否符合主题要求
-- 确认原创性
+### 1. Initial Review (1-2 business days)
+- Check if format is correct
+- Verify if content meets topic requirements
+- Confirm originality
 
-### 2. 内容审核（3-5个工作日）
-- 语言准确性检查
-- 文化内容验证
-- 教学价值评估
+### 2. Content Review (3-5 business days)
+- Language accuracy check
+- Cultural content verification
+- Educational value assessment
 
-### 3. 技术审核（1-2个工作日）
-- JSON 格式验证
-- SEO 优化检查
-- 网站兼容性测试
+### 3. Technical Review (1-2 business days)
+- JSON format validation
+- SEO optimization check
+- Website compatibility testing
 
-### 4. 发布
-- 审核通过后，文章将在下一个工作日发布
-- 作者将收到发布通知邮件
+### 4. Publication
+- After review approval, articles will be published on the next business day
+- Authors will receive publication notification email
 
-## 🎯 最佳实践
+## 🎯 Best Practices
 
-### 内容创作
-1. **开头引人入胜**: 用有趣的事实或问题开始
-2. **结构清晰**: 使用小标题和列表组织内容
-3. **实例丰富**: 提供具体的葡萄牙语例句和对话
-4. **互动元素**: 包含练习题或思考问题
-5. **总结回顾**: 在结尾总结要点
+### Content Creation
+1. **Engaging Opening**: Start with interesting facts or questions
+2. **Clear Structure**: Use subheadings and lists to organize content
+3. **Rich Examples**: Provide specific Portuguese example sentences and dialogues
+4. **Interactive Elements**: Include practice questions or thought-provoking questions
+5. **Summary Review**: Summarize key points at the end
 
-### SEO 优化
-1. **关键词研究**: 使用相关的葡萄牙语学习关键词
-2. **标题优化**: 包含主要关键词，长度控制在60字符内
-3. **描述精准**: 摘要要准确反映文章内容
-4. **内链建设**: 适当链接到相关的其他文章
+### SEO Optimization
+1. **Keyword Research**: Use relevant Portuguese learning keywords
+2. **Title Optimization**: Include main keywords, keep length within 60 characters
+3. **Accurate Description**: Summary should accurately reflect article content
+4. **Internal Linking**: Appropriately link to other related articles
 
-### 用户体验
-1. **移动友好**: 确保内容在手机上易读
-2. **加载速度**: 避免使用过大的图片
-3. **可访问性**: 使用清晰的标题层级和描述性链接文本
+### User Experience
+1. **Mobile Friendly**: Ensure content is easy to read on mobile devices
+2. **Loading Speed**: Avoid using oversized images
+3. **Accessibility**: Use clear heading hierarchy and descriptive link text
 
-## 📊 贡献者权益
+## 📊 Contributor Benefits
 
-### 署名权
-- 所有发布的文章都会显示作者姓名
-- 可以包含作者简介和社交媒体链接
+### Attribution Rights
+- All published articles will display author name
+- Can include author bio and social media links
 
-### 反馈机制
-- 定期收到文章阅读量和用户反馈报告
-- 参与月度贡献者交流会
+### Feedback Mechanism
+- Regularly receive article readership and user feedback reports
+- Participate in monthly contributor exchange meetings
 
-### 奖励计划
-- 优质文章作者将获得特殊徽章
-- 年度最佳贡献者将获得葡萄牙语学习资源奖励
+### Reward Program
+- Quality article authors will receive special badges
+- Annual best contributors will receive Portuguese learning resource rewards
 
-## 📞 联系我们
+## 📞 Contact Us
 
-如有任何问题，请通过以下方式联系：
+If you have any questions, please contact us through the following methods:
 
-- **GitHub Issues**: [提交问题](https://github.com/your-username/sayola/issues)
-- **邮箱**: blog@sayola.com
-- **讨论区**: [GitHub Discussions](https://github.com/your-username/sayola/discussions)
+- **GitHub Issues**: [Submit Issues](https://github.com/your-username/sayola/issues)
+- **Email**: blog@sayola.com
+- **Discussion Forum**: [GitHub Discussions](https://github.com/your-username/sayola/discussions)
 
-## 📚 参考资源
+## 📚 Reference Resources
 
-- [Blog Post 模板文件](./blog-post-template.json)
-- [Markdown 语法指南](https://www.markdownguide.org/)
-- [葡萄牙语语法参考](https://www.conjugacao.com.br/)
-- [SEO 最佳实践](https://developers.google.com/search/docs)
+- [Blog Post Template File](./blog-post-template.json)
+- [Markdown Syntax Guide](https://www.markdownguide.org/)
+- [Portuguese Grammar Reference](https://www.conjugacao.com.br/)
+- [SEO Best Practices](https://developers.google.com/search/docs)
 
 ---
 
-感谢你对 Sayola 社区的贡献！让我们一起为葡萄牙语学习者创造更好的学习体验。🇵🇹✨
+Thank you for your contribution to the Sayola community! Let's create a better learning experience for Portuguese learners together. 🇵🇹✨

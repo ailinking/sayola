@@ -1,118 +1,118 @@
 ---
 name: Blog Post Submission
-about: 提交新的blog post内容到Sayola葡萄牙语学习平台
-title: '[Blog] 你的文章标题'
+about: Submit new blog post content to the Sayola Portuguese learning platform
+title: '[Blog] Your Article Title'
 labels: ['blog', 'content', 'pending-review']
 assignees: ''
 
 ---
 
-## 📝 文章信息
+## 📝 Article Information
 
-**文章标题：**
-<!-- 请提供一个简洁明了的标题，建议60字符以内 -->
+**Article Title:**
+<!-- Please provide a concise and clear title, recommended within 60 characters -->
 
-**文章分类：**
-- [ ] Beginner（初学者）
-- [ ] Intermediate（中级）
-- [ ] Advanced（高级）
-- [ ] Culture（文化）
+**Article Category:**
+- [ ] Beginner
+- [ ] Intermediate
+- [ ] Advanced
+- [ ] Culture
 
-**预估阅读时间：**
-<!-- 例如：3 min read -->
+**Estimated Reading Time:**
+<!-- For example: 3 min read -->
 
-**文章标签：**
-<!-- 请列出3-8个相关标签，用逗号分隔 -->
+**Article Tags:**
+<!-- Please list 3-8 relevant tags, separated by commas -->
 
-## 📖 文章内容
+## 📖 Article Content
 
-**文章摘要：**
-<!-- 150字以内的文章摘要，描述主要内容和学习价值 -->
+**Article Summary:**
+<!-- Article summary within 150 words, describing main content and learning value -->
 
-**文章正文：**
-<!-- 请使用Markdown格式编写文章内容，建议800-2000字 -->
+**Article Body:**
+<!-- Please write article content using Markdown format, recommended 800-2000 words -->
 
 ```markdown
-## 引言
+## Introduction
 
-在这里写你的文章内容...
+Write your article content here...
 
-## 主要内容
+## Main Content
 
 ...
 
-## 实际例子
+## Practical Examples
 
-• **例句1**: 葡萄牙语例句 (中文翻译)
-• **例句2**: 葡萄牙语例句 (中文翻译)
+• **Example 1**: Portuguese example sentence (English translation)
+• **Example 2**: Portuguese example sentence (English translation)
 
-## 总结
+## Summary
 
 ...
 ```
 
-## 👤 作者信息
+## 👤 Author Information
 
-**作者姓名：**
-<!-- 可以是真名或笔名 -->
+**Author Name:**
+<!-- Can be real name or pen name -->
 
-**作者简介：**
-<!-- 可选：简短的作者介绍，50字以内 -->
+**Author Bio:**
+<!-- Optional: Brief author introduction, within 50 words -->
 
-**联系方式：**
-<!-- 可选：邮箱或社交媒体链接 -->
+**Contact Information:**
+<!-- Optional: Email or social media links -->
 
-## 🔍 SEO 信息
+## 🔍 SEO Information
 
-**SEO标题：**
-<!-- 60字符以内，包含主要关键词 -->
+**SEO Title:**
+<!-- Within 60 characters, including main keywords -->
 
-**SEO描述：**
-<!-- 160字符以内，用于搜索引擎显示 -->
+**SEO Description:**
+<!-- Within 160 characters, used for search engine display -->
 
-**关键词：**
-<!-- 5-15个关键词，用逗号分隔 -->
+**Keywords:**
+<!-- 5-15 keywords, separated by commas -->
 
-**建议URL路径（slug）：**
-<!-- 例如：portuguese-grammar-basics -->
+**Suggested URL Path (slug):**
+<!-- For example: portuguese-grammar-basics -->
 
-## ✅ 提交检查清单
+## ✅ Submission Checklist
 
-请确认以下项目：
+Please confirm the following items:
 
-- [ ] 内容是原创的，没有抄袭
-- [ ] 葡萄牙语示例准确无误
-- [ ] 文章结构清晰，使用了适当的标题和列表
-- [ ] 包含实用的学习建议和例子
-- [ ] SEO信息完整且相关
-- [ ] 文章长度适中（800-2000字）
-- [ ] 使用了正确的Markdown格式
-- [ ] 已阅读并同意[贡献指南](../BLOG_CONTRIBUTION_GUIDE.md)
+- [ ] Content is original, no plagiarism
+- [ ] Portuguese examples are accurate
+- [ ] Article structure is clear, using appropriate headings and lists
+- [ ] Includes practical learning suggestions and examples
+- [ ] SEO information is complete and relevant
+- [ ] Article length is appropriate (800-2000 words)
+- [ ] Uses correct Markdown format
+- [ ] Have read and agreed to the [Contribution Guide](../BLOG_CONTRIBUTION_GUIDE.md)
 
-## 📎 附加信息
+## 📎 Additional Information
 
-**相关资源：**
-<!-- 可选：相关的参考资料或链接 -->
+**Related Resources:**
+<!-- Optional: Related reference materials or links -->
 
-**特殊说明：**
-<!-- 可选：任何需要特别说明的内容 -->
+**Special Notes:**
+<!-- Optional: Any content that needs special explanation -->
 
-**建议发布时间：**
-<!-- 可选：如果有特定的发布时间要求 -->
-
----
-
-## 📋 审核流程说明
-
-提交后，你的文章将经过以下审核流程：
-
-1. **格式检查**（1-2个工作日）- 验证格式和基本要求
-2. **内容审核**（3-5个工作日）- 检查语言准确性和教学价值
-3. **技术审核**（1-2个工作日）- SEO优化和网站兼容性
-4. **发布**（1个工作日）- 审核通过后发布并通知作者
-
-感谢你为Sayola社区贡献优质内容！🇵🇹✨
+**Suggested Publication Time:**
+<!-- Optional: If there are specific publication time requirements -->
 
 ---
 
-**注意：** 请不要在此Issue中包含敏感信息。如需私密沟通，请发送邮件至 blog@sayola.com
+## 📋 Review Process Description
+
+After submission, your article will go through the following review process:
+
+1. **Format Check** (1-2 business days) - Verify format and basic requirements
+2. **Content Review** (3-5 business days) - Check language accuracy and educational value
+3. **Technical Review** (1-2 business days) - SEO optimization and website compatibility
+4. **Publication** (1 business day) - Publish after review approval and notify author
+
+Thank you for contributing quality content to the Sayola community! 🇵🇹✨
+
+---
+
+**Note:** Please do not include sensitive information in this Issue. For private communication, please send an email to blog@sayola.com

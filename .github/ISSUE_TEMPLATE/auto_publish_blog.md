@@ -1,234 +1,229 @@
 ---
 name: Auto Publish Blog Post
-about: 自动发布blog post到Sayola葡萄牙语学习平台（需要暗号）
-title: '[Auto-Blog] 你的文章标题'
+about: Automatically publish blog post to Sayola Portuguese learning platform (requires passcode)
+title: '[Auto-Blog] Your Article Title'
 labels: ['blog', 'auto-publish']
 assignees: ''
 
 ---
 
 <!-- 
-重要说明：此模板用于自动发布blog post
-提交后系统将自动验证暗号并发布文章
-请确保所有信息准确无误
+Important Note: This template is for automatic blog post publishing
+After submission, the system will automatically verify the passcode and publish the article
+Please ensure all information is accurate
 -->
 
-<!-- PASSCODE: 在此处输入暗号 -->
+<!-- PASSCODE: Enter passcode here -->
 
-## 🤖 完整AI自动发布指令
+## 🤖 Complete AI Auto-Publishing Instructions
 
-**直接复制以下完整指令发送给AI（ChatGPT、Claude等），AI将自动完成文章生成和GitHub提交：**
+**Copy the following complete instructions and send to AI (ChatGPT, Claude, etc.), AI will automatically complete article generation and GitHub submission:**
 
 ```
-你是一个专业的葡萄牙语学习内容创作助手。请按照以下步骤完成Sayola平台的blog文章自动发布：
+You are a professional Portuguese language learning content creation assistant. Please complete the automatic blog publishing for the Sayola platform following these steps:
 
-【第一步：生成文章内容】
-请为Sayola葡萄牙语学习平台生成一篇关于"[在此指定主题，如：葡萄牙语基础语法]"的高质量blog文章。
+【Step 1: Generate Article Content】
+Please generate a high-quality blog article about "[Specify topic here, e.g., Portuguese Basic Grammar]" for the Sayola Portuguese learning platform.
 
-文章要求：
-- 目标读者：[初学者/中级/高级]
-- 文章长度：1200-1500字
-- 包含8-15个葡萄牙语例句，每个都有准确中文翻译
-- 结构：引言 → 核心内容 → 实例演示 → 练习建议 → 总结
-- 格式：Markdown，使用##和###标题
-- 例句格式：**Olá, como está?** (你好，你好吗？)
+Article Requirements:
+- Target audience: [Beginner/Intermediate/Advanced]
+- Article length: 1200-1500 words
+- Include 8-15 Portuguese example sentences, each with accurate Chinese translations
+- Structure: Introduction → Core Content → Example Demonstration → Practice Suggestions → Summary
+- Format: Markdown, using ## and ### headings
+- Example sentence format: **Olá, como está?** (Hello, how are you?)
 
-【第二步：准备提交信息】
-生成文章后，请按以下格式整理提交信息：
+【Step 2: Prepare Submission Information】
+After generating the article, please organize submission information in the following format:
 
-文章标题：[生成吸引人的标题，60字符内]
-文章分类：[选择：Beginner/Intermediate/Advanced/Culture]
-文章标签：[提供5-8个标签，逗号分隔]
-文章摘要：[150字内的精炼摘要]
-作者姓名：AI助手
-SEO标题：[包含关键词的SEO标题]
-SEO描述：[160字符内的SEO描述]
-关键词：[8-12个关键词，逗号分隔]
-URL路径：[英文slug，如：portuguese-basic-grammar]
+Article Title: [Generate attractive title, within 60 characters]
+Article Category: [Choose: Beginner/Intermediate/Advanced/Culture]
+Article Tags: [Provide 5-8 tags, comma-separated]
+Article Summary: [Concise summary within 150 words]
+Author Name: AI Assistant
+SEO Title: [SEO title including keywords]
+SEO Description: [SEO description within 160 characters]
+Keywords: [8-12 keywords, comma-separated]
+URL Path: [English slug, e.g., portuguese-basic-grammar]
 
-【第三步：生成GitHub Issue提交格式】
-请将所有信息按照以下精确格式输出，我将直接复制到GitHub：
+【Step 3: Generate GitHub Issue Submission Format】
+Please output all information in the following exact format, I will copy directly to GitHub:
 
----
-**标题：** [Auto-Blog] [你的文章标题]
+**Title:** [Auto-Blog] [Your Article Title]
 
-**Issue内容：**
-```
-<!-- PASSCODE: 在此处输入暗号 -->
-woyaofabu
+**Issue Content:**
 
-## 📝 文章信息
+<!-- PASSCODE: woyaofabu -->
 
-**文章标题：**
-[你生成的标题]
+## 📝 Article Information
 
-**文章分类：**
-- [x] [选中的分类]
-- [ ] 其他未选中的分类
+**Article Title:**
+[Your generated title]
 
-**文章标签：**
-[你的标签列表]
+**Article Category:**
+- [x] [Selected category]
+- [ ] Other unselected categories
 
-## 📖 文章内容
+**Article Tags:**
+[Your tag list]
 
-**文章摘要：**
-[你生成的摘要]
+## 📖 Article Content
 
-**文章正文：**
-```markdown
-[在这里粘贴你生成的完整Markdown文章内容]
-```
+**Article Summary:**
+[Your generated summary]
 
-## 👤 作者信息
-
-**作者姓名：**
-AI助手
-
-**作者简介：**
-专业的葡萄牙语学习内容创作助手
-
-## 🔍 SEO 信息
-
-**SEO标题：**
-[你的SEO标题]
-
-**SEO描述：**
-[你的SEO描述]
-
-**关键词：**
-[你的关键词列表]
-
-**建议URL路径（slug）：**
-[你的URL路径]
-
-## ✅ 提交检查清单
-
-- [x] 已输入正确的暗号
-- [x] 内容是原创的，没有抄袭
-- [x] 葡萄牙语示例准确无误
-- [x] 文章结构清晰，使用了适当的标题和列表
-- [x] 包含实用的学习建议和例子
-- [x] SEO信息完整且相关
-- [x] 文章长度适中（800-2000字）
-- [x] 使用了正确的Markdown格式
-```
----
-
-【第四步：提交说明】
-复制上述Issue内容后：
-1. 访问：https://github.com/ailinking/sayola/issues/new/choose
-2. 选择"Auto Publish Blog Post"模板
-3. 将生成的内容完整粘贴
-4. 点击"Submit new issue"
-5. 等待1-2分钟自动发布完成
-
-请现在开始执行，生成一篇关于"[在此处指定具体主题]"的文章并提供完整的GitHub提交格式。
-```
-
-**使用方法：**
-1. 复制上述完整指令
-2. 将两处"[在此指定主题]"替换为具体主题
-3. 将"[初学者/中级/高级]"选择一个
-4. 发送给AI
-5. AI将返回完整的GitHub Issue提交内容
-6. 直接复制粘贴到GitHub即可自动发布
-
----
-
-## 📝 文章信息
-
-**文章标题：**
-<!-- 请提供一个简洁明了的标题，建议60字符以内 -->
-
-**文章分类：**
-- [ ] Beginner（初学者）
-- [ ] Intermediate（中级）
-- [ ] Advanced（高级）
-- [ ] Culture（文化）
-
-**文章标签：**
-<!-- 请列出3-8个相关标签，用逗号分隔 -->
-
-## 📖 文章内容
-
-**文章摘要：**
-<!-- 150字以内的文章摘要，描述主要内容和学习价值 -->
-
-**文章正文：**
-<!-- 请使用Markdown格式编写文章内容，建议800-2000字 -->
+**Article Body:**
 
 ```markdown
-## 引言
-
-在这里写你的文章内容...
-
-## 主要内容
-
-...
-
-## 实际例子
-
-• **例句1**: 葡萄牙语例句 (中文翻译)
-• **例句2**: 葡萄牙语例句 (中文翻译)
-
-## 总结
-
-...
+[Paste your complete Markdown article content here]
 ```
 
-## 👤 作者信息
+## 👤 Author Information
 
-**作者姓名：**
-<!-- 可以是真名或笔名 -->
+**Author Name:**
+AI Assistant
 
-**作者简介：**
-<!-- 可选：简短的作者介绍，50字以内 -->
+**Author Bio:**
+Professional Portuguese language learning content creation assistant
 
-## 🔍 SEO 信息
+## 🔍 SEO Information
 
-**SEO标题：**
-<!-- 60字符以内，包含主要关键词 -->
+**SEO Title:**
+[Your SEO title]
 
-**SEO描述：**
-<!-- 160字符以内，用于搜索引擎显示 -->
+**SEO Description:**
+[Your SEO description]
 
-**关键词：**
-<!-- 5-15个关键词，用逗号分隔 -->
+**Keywords:**
+[Your keyword list]
 
-**建议URL路径（slug）：**
-<!-- 例如：portuguese-grammar-basics -->
+**Suggested URL Path (slug):**
+[Your URL path]
 
-## ✅ 提交检查清单
+## ✅ Submission Checklist
 
-请确认以下项目：
-
-- [ ] 已输入正确的暗号
-- [ ] 内容是原创的，没有抄袭
-- [ ] 葡萄牙语示例准确无误
-- [ ] 文章结构清晰，使用了适当的标题和列表
-- [ ] 包含实用的学习建议和例子
-- [ ] SEO信息完整且相关
-- [ ] 文章长度适中（800-2000字）
-- [ ] 使用了正确的Markdown格式
+- [x] Entered correct passcode
+- [x] Content is original, no plagiarism
+- [x] Portuguese examples are accurate
+- [x] Article structure is clear, using appropriate headings and lists
+- [x] Includes practical learning suggestions and examples
+- [x] SEO information is complete and relevant
+- [x] Article length is appropriate (800-2000 words)
+- [x] Used correct Markdown format
 
 ---
 
-## 🤖 自动发布说明
+【Step 4: Submission Instructions】
+After copying the above Issue content:
+1. Visit: https://github.com/ailinking/sayola/issues/new/choose
+2. Select "Auto Publish Blog Post" template
+3. Paste the generated content completely
+4. Click "Submit new issue"
+5. Wait 1-2 minutes for automatic publishing to complete
 
-提交此Issue后，系统将：
+Please start executing now, generate an article about "[Specify specific topic here]" and provide complete GitHub submission format.
+```
 
-1. **验证暗号** - 检查提供的暗号是否正确
-2. **解析内容** - 自动提取文章信息和内容
-3. **生成文件** - 创建符合格式的JSON文件
-4. **自动发布** - 将文章添加到网站内容库
-5. **反馈结果** - 在此Issue中回复发布状态
-
-**注意事项：**
-- 暗号验证失败将不会发布文章
-- 请确保所有必需字段都已填写
-- 发布成功后此Issue将被标记为"published"
-- 文章将在下次网站部署时生效
+**Usage Instructions:**
+1. Copy the complete instructions above
+2. Replace both "[Specify topic here]" with specific topic
+3. Choose one from "[Beginner/Intermediate/Advanced]"
+4. Send to AI
+5. AI will return complete GitHub Issue submission content
+6. Copy and paste directly to GitHub for automatic publishing
 
 ---
 
-**安全提醒：** 请勿在公开场合分享暗号信息
+## 📝 Article Information
+
+**Article Title:**
+<!-- Please provide a concise and clear title, recommended within 60 characters -->
+
+**Article Category:**
+- [ ] Beginner
+- [ ] Intermediate
+- [ ] Advanced
+- [ ] Culture
+
+**Article Tags:**
+<!-- Please list 3-8 relevant tags, comma-separated -->
+
+## 📖 Article Content
+
+**Article Summary:**
+<!-- Article summary within 150 words, describing main content and learning value -->
+
+**Article Body:**
+<!-- Please write article content in Markdown format, recommended 800-2000 words -->
+
+```markdown
+## Introduction
+
+Write your article content here...
+
+## Main Content
+
+## Practical Examples
+
+• **Example 1**: Portuguese example sentence (English translation)
+• **Example 2**: Portuguese example sentence (English translation)
+
+## Summary
+```
+
+## 👤 Author Information
+
+**Author Name:**
+<!-- Can be real name or pen name -->
+
+**Author Bio:**
+<!-- Optional: Brief author introduction, within 50 words -->
+
+## 🔍 SEO Information
+
+**SEO Title:**
+<!-- Within 60 characters, including main keywords -->
+
+**SEO Description:**
+<!-- Within 160 characters, for search engine display -->
+
+**Keywords:**
+<!-- 5-15 keywords, comma-separated -->
+
+**Suggested URL Path (slug):**
+<!-- e.g., portuguese-grammar-basics -->
+
+## ✅ Submission Checklist
+
+Please confirm the following items:
+
+- [ ] Entered correct passcode
+- [ ] Content is original, no plagiarism
+- [ ] Portuguese examples are accurate
+- [ ] Article structure is clear, using appropriate headings and lists
+- [ ] Includes practical learning suggestions and examples
+- [ ] SEO information is complete and relevant
+- [ ] Article length is appropriate (800-2000 words)
+- [ ] Used correct Markdown format
+
+---
+
+## 🤖 Auto-Publishing Instructions
+
+After submitting this Issue, the system will:
+
+1. **Verify Passcode** - Check if the provided passcode is correct
+2. **Parse Content** - Automatically extract article information and content
+3. **Generate File** - Create properly formatted JSON file
+4. **Auto-Publish** - Add article to website content library
+5. **Feedback Result** - Reply with publishing status in this Issue
+
+**Notes:**
+- Failed passcode verification will not publish the article
+- Please ensure all required fields are filled
+- After successful publishing, this Issue will be marked as "published"
+- Article will take effect on next website deployment
+
+---
+
+**Security Reminder:** Please do not share passcode information in public places

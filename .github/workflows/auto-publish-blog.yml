@@ -23,22 +23,22 @@ jobs:
     - name: Extract and validate blog post
       id: extract
       run: |
-        # 从Issue内容中提取blog post数据
+        # Extract blog post data from Issue content
         issue_body="${{ github.event.issue.body }}"
         
-        # 使用Node.js脚本处理Issue内容
+        # Use Node.js script to process Issue content
         cat > extract_blog.js << 'EOF'
         const fs = require('fs');
         const crypto = require('crypto');
         
-        // 从环境变量获取Issue内容
+        // Get Issue content from environment variable
         const issueBody = process.env.ISSUE_BODY;
         
-        // 验证暗号的哈希值（避免在代码中暴露明文暗号）
-        const expectedHash = '8b8c9e4f7a2d1e3f6c5b4a9d8e7f6c5b4a3d2e1f0c9b8a7d6e5f4c3b2a1d0e9f8c7b6a5d4e3f2c1b0a9d8e7f6c5b4a3d2e1f'; // woyaofabu的SHA-256哈希
+        // Validate passcode hash (avoid exposing plaintext passcode in code)
+        const expectedHash = '8b8c9e4f7a2d1e3f6c5b4a9d8e7f6c5b4a3d2e1f0c9b8a7d6e5f4c3b2a1d0e9f8c7b6a5d4e3f2c1b0a9d8e7f6c5b4a3d2e1f'; // SHA-256 hash of woyaofabu
         
         try {
-          // 提取暗号
+          // Extract passcode
           const passcodeMatch = issueBody.match(/<!-- PASSCODE: (.*?) -->/);
           if (!passcodeMatch) {
             console.log('No passcode found');
@@ -48,7 +48,7 @@ jobs:
           const passcode = passcodeMatch[1].trim();
           const passcodeHash = crypto.createHash('sha256').update(passcode).digest('hex');
           
-          // 验证暗号
+          // Validate passcode
           if (passcodeHash !== expectedHash) {
             console.log('Invalid passcode');
             process.exit(1);
@@ -56,24 +56,24 @@ jobs:
           
           console.log('Passcode validated successfully');
           
-          // 提取blog post内容
-          const titleMatch = issueBody.match(/\*\*文章标题：\*\*\s*(.+)/);
-          const excerptMatch = issueBody.match(/\*\*文章摘要：\*\*\s*([^*]+)/);
-          const authorMatch = issueBody.match(/\*\*作者姓名：\*\*\s*(.+)/);
+          // Extract blog post content
+          const titleMatch = issueBody.match(/\*\*Article Title:\*\*\s*(.+)/);
+          const excerptMatch = issueBody.match(/\*\*Article Summary:\*\*\s*([^*]+)/);
+          const authorMatch = issueBody.match(/\*\*Author Name:\*\*\s*(.+)/);
           const categoryMatch = issueBody.match(/- \[x\] (.+?)（/);
-          const tagsMatch = issueBody.match(/\*\*文章标签：\*\*\s*(.+)/);
+          const tagsMatch = issueBody.match(/\*\*Article Tags:\*\*\s*(.+)/);
           const contentMatch = issueBody.match(/```markdown\s*([\s\S]*?)\s*```/);
-          const seoTitleMatch = issueBody.match(/\*\*SEO标题：\*\*\s*(.+)/);
-          const seoDescMatch = issueBody.match(/\*\*SEO描述：\*\*\s*(.+)/);
-          const keywordsMatch = issueBody.match(/\*\*关键词：\*\*\s*(.+)/);
-          const slugMatch = issueBody.match(/\*\*建议URL路径（slug）：\*\*\s*(.+)/);
+          const seoTitleMatch = issueBody.match(/\*\*SEO Title:\*\*\s*(.+)/);
+          const seoDescMatch = issueBody.match(/\*\*SEO Description:\*\*\s*(.+)/);
+          const keywordsMatch = issueBody.match(/\*\*Keywords:\*\*\s*(.+)/);
+          const slugMatch = issueBody.match(/\*\*Suggested URL Path \(slug\):\*\*\s*(.+)/);
           
           if (!titleMatch || !contentMatch || !authorMatch) {
             console.log('Missing required fields');
             process.exit(1);
           }
           
-          // 生成blog post JSON
+          // Generate blog post JSON
           const blogPost = {
             id: `post-${Date.now()}`,
             title: titleMatch[1].trim(),
@@ -98,11 +98,11 @@ jobs:
             }
           };
           
-          // 保存到文件
+          // Save to file
           const filename = `${blogPost.slug}.json`;
           fs.writeFileSync(filename, JSON.stringify(blogPost, null, 2));
           
-          // 输出文件名供后续步骤使用
+          // Output filename for subsequent steps
           console.log(`FILENAME=${filename}`);
           
         } catch (error) {
@@ -111,10 +111,10 @@ jobs:
         }
         EOF
         
-        # 运行提取脚本
+        # Run extraction script
         ISSUE_BODY="${{ github.event.issue.body }}" node extract_blog.js > output.txt
         
-        # 检查是否成功
+        # Check if successful
         if [ $? -eq 0 ]; then
           filename=$(grep "FILENAME=" output.txt | cut -d'=' -f2)
           echo "filename=$filename" >> $GITHUB_OUTPUT
@@ -126,14 +126,14 @@ jobs:
     - name: Commit and push blog post
       if: steps.extract.outputs.success == 'true'
       run: |
-        # 配置Git
+        # Configure Git
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
-        # 移动文件到正确位置
+        # Move file to correct location
         mv "${{ steps.extract.outputs.filename }}" "content/blog/"
         
-        # 提交更改
+        # Commit changes
         git add "content/blog/${{ steps.extract.outputs.filename }}"
         git commit -m "Auto-publish blog post: ${{ steps.extract.outputs.filename }}"
         git push
@@ -147,10 +147,10 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: '✅ **Blog post已自动发布成功！**\n\n文章已添加到网站，将在下次部署时生效。\n\n感谢你的贡献！🎉'
+            body: '✅ **Blog post auto-published successfully!**\n\nThe article has been added to the website and will take effect on the next deployment.\n\nThank you for your contribution! 🎉'
           });
           
-          // 添加已发布标签
+          // Add published label
           github.rest.issues.addLabels({
             issue_number: context.issue.number,
             owner: context.repo.owner,
@@ -158,7 +158,7 @@ jobs:
             labels: ['published']
           });
           
-          // 移除待发布标签
+          // Remove auto-publish label
           try {
             github.rest.issues.removeLabel({
               issue_number: context.issue.number,
@@ -167,7 +167,7 @@ jobs:
               name: 'auto-publish'
             });
           } catch (error) {
-            // 标签可能不存在，忽略错误
+            // Label might not exist, ignore error
           }
 
     - name: Update issue with failure status
@@ -179,5 +179,5 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: '❌ **自动发布失败**\n\n可能的原因：\n- 暗号不正确\n- 缺少必需字段\n- 格式不正确\n\n请检查提交内容并重新编辑Issue。'
+            body: '❌ **Auto-publish failed**\n\nPossible reasons:\n- Incorrect passcode\n- Missing required fields\n- Incorrect format\n\nPlease check your submission content and re-edit the Issue.'
           });

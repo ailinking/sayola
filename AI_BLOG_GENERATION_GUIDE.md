@@ -1,190 +1,192 @@
-# AI辅助Blog生成和自动提交指南
+# AI-Assisted Blog Generation and Auto-Submission Guide
 
-## 🤖 概述
+## 🤖 Overview
 
-本指南详细说明如何使用AI生成高质量的葡萄牙语学习blog文章，并通过GitHub自动发布系统提交到Sayola平台。
+This guide provides detailed instructions on how to use AI to generate high-quality Portuguese learning blog articles and submit them through the GitHub auto-publishing system to the Sayola platform.
 
-## 🔐 重要安全信息
+## 🔐 Important Security Information
 
-**暗号：** `woyaofabu`
-- 此暗号用于自动发布验证
-- 请妥善保管，不要在公开场合分享
-- 系统使用SHA-256加密验证
+**Passcode:** `woyaofabu`
+- This passcode is used for auto-publishing verification
+- Please keep it secure and do not share in public places
+- The system uses SHA-256 encryption for verification
 
-## 📋 完整操作步骤
+## 📋 Complete Operation Steps
 
-### 第一步：准备AI提示词
+### Step 1: Prepare AI Prompt
 
-使用以下提示词模板来指导AI生成blog文章：
+Use the following prompt template to guide AI in generating blog articles:
 
 ```
-请为Sayola葡萄牙语学习平台生成一篇blog文章，要求如下：
+Please generate a blog article for the Sayola Portuguese learning platform with the following requirements:
 
-主题：[具体主题，例如：葡萄牙语动词变位基础]
-目标读者：[初学者/中级/高级]
-文章长度：800-1500字
+Topic: [Specific topic, e.g., Portuguese Verb Conjugation Basics]
+Target audience: [Beginner/Intermediate/Advanced]
+Article length: 800-1500 words
 
-内容要求：
-1. 包含实用的葡萄牙语学习技巧
-2. 提供具体的例句和翻译
-3. 结构清晰，使用标题和列表
-4. 包含练习建议或记忆方法
-5. 语言简洁易懂，适合中文读者
+Content requirements:
+1. Include practical Portuguese learning tips
+2. Provide specific example sentences and translations
+3. Clear structure using headings and lists
+4. Include practice suggestions or memory techniques
+5. Simple and easy-to-understand language suitable for Chinese readers
 
-格式要求：
-- 使用Markdown格式
-- 包含引言、主要内容、例子、总结
-- 每个例句都要有中文翻译
-- 使用适当的标题层级（##, ###）
+Format requirements:
+- Use Markdown format
+- Include introduction, main content, examples, summary
+- Each example sentence must have English translation
+- Use appropriate heading levels (##, ###)
 
-请生成完整的文章内容。
+Please generate complete article content.
 ```
 
-### 第二步：生成文章内容
+### Step 2: Generate Article Content
 
-1. 将上述提示词发送给AI（如ChatGPT、Claude等）
-2. 检查生成的内容质量
-3. 确保葡萄牙语例句准确
-4. 验证中文翻译正确性
+1. Send the above prompt to AI (such as ChatGPT, Claude, etc.)
+2. Check the quality of generated content
+3. Ensure Portuguese example sentences are accurate
+4. Verify English translations are correct
 
-### 第三步：准备提交信息
+### Step 3: Prepare Submission Information
 
-收集以下信息用于GitHub Issue提交：
+Collect the following information for GitHub Issue submission:
 
-**必需信息：**
-- 文章标题（60字符以内）
-- 文章分类（Beginner/Intermediate/Advanced/Culture）
-- 文章标签（3-8个，逗号分隔）
-- 文章摘要（150字以内）
-- 完整文章内容（Markdown格式）
-- 作者姓名
-- SEO标题（60字符以内）
-- SEO描述（160字符以内）
-- 关键词（5-15个）
-- URL路径建议（slug）
+**Required Information:**
+- Article title (within 60 characters)
+- Article category (Beginner/Intermediate/Advanced/Culture)
+- Article tags (3-8 tags, comma-separated)
+- Article summary (within 150 words)
+- Complete article content (Markdown format)
+- Author name
+- SEO title (within 60 characters)
+- SEO description (within 160 characters)
+- Keywords (5-15 keywords)
+- URL path suggestion (slug)
 
-### 第四步：创建GitHub Issue
+### Step 4: Create GitHub Issue
 
-1. 访问：`https://github.com/ailinking/sayola/issues/new/choose`
-2. 选择 "Auto Publish Blog Post" 模板
-3. 按照模板填写所有信息
+1. Visit: `https://github.com/ailinking/sayola/issues/new/choose`
+2. Select "Auto Publish Blog Post" template
+3. Fill in all information according to the template
 
-**重要：在 `<!-- PASSCODE: 在此处输入暗号 -->` 行下方添加：**
+**Important: Add the following under the `<!-- PASSCODE: Enter passcode here -->` line:**
 ```
 woyaofabu
 ```
 
-### 第五步：提交和验证
+### Step 5: Submit and Verify
 
-1. 点击 "Submit new issue" 提交
-2. 等待GitHub Actions自动处理（通常1-2分钟）
-3. 检查Issue中的自动回复：
-   - ✅ 成功：文章已发布，Issue标记为"published"
-   - ❌ 失败：检查错误信息并修正
+1. Click "Submit new issue" to submit
+2. Wait for GitHub Actions automatic processing (usually 1-2 minutes)
+3. Check automatic reply in the Issue:
+   - ✅ Success: Article published, Issue marked as "published"
+   - ❌ Failure: Check error message and make corrections
 
-## 📝 AI提示词示例
+## 📝 AI Prompt Examples
 
-### 示例1：语法主题
+### Example 1: Grammar Topic
+
 ```
-请为Sayola葡萄牙语学习平台生成一篇关于"葡萄牙语形容词性数一致"的blog文章。
+Please generate a blog article about "Portuguese Adjective Gender and Number Agreement" for the Sayola Portuguese learning platform.
 
-目标读者：初学者
-文章长度：1000字左右
+Target audience: Beginners
+Article length: Around 1000 words
 
-内容要求：
-1. 解释形容词性数一致的基本规则
-2. 提供至少10个具体例句（葡萄牙语+中文翻译）
-3. 包含常见错误和避免方法
-4. 提供练习建议
-5. 使用简单易懂的语言
+Content requirements:
+1. Explain basic rules of adjective gender and number agreement
+2. Provide at least 10 specific example sentences (Portuguese + English translation)
+3. Include common mistakes and avoidance methods
+4. Provide practice suggestions
+5. Use simple and easy-to-understand language
 
-格式：使用Markdown，包含引言、规则说明、例句、练习建议、总结
-```
-
-### 示例2：文化主题
-```
-请为Sayola葡萄牙语学习平台生成一篇关于"巴西咖啡文化与葡萄牙语表达"的blog文章。
-
-目标读者：中级学习者
-文章长度：1200字左右
-
-内容要求：
-1. 介绍巴西咖啡文化背景
-2. 教授相关的葡萄牙语词汇和表达
-3. 包含对话示例
-4. 提供文化学习建议
-5. 结合语言学习和文化理解
-
-格式：使用Markdown，包含文化背景、词汇学习、对话练习、文化贴士、总结
+Format: Use Markdown, include introduction, rule explanation, example sentences, practice suggestions, summary
 ```
 
-## ⚠️ 注意事项
+### Example 2: Culture Topic
 
-### 内容质量控制
-- 确保葡萄牙语内容准确性
-- 验证语法和拼写
-- 检查中文翻译的准确性
-- 确保内容原创性
+```
+Please generate a blog article about "Brazilian Coffee Culture and Portuguese Expressions" for the Sayola Portuguese learning platform.
 
-### 技术要求
-- 使用正确的Markdown语法
-- 确保所有必填字段完整
-- 暗号输入准确（区分大小写）
-- 标签和分类选择合适
+Target audience: Intermediate learners
+Article length: Around 1200 words
 
-### 安全提醒
-- 不要在公开场合分享暗号
-- 不要在Issue标题或公开内容中包含暗号
-- 定期检查发布状态
+Content requirements:
+1. Introduce Brazilian coffee culture background
+2. Teach related Portuguese vocabulary and expressions
+3. Include dialogue examples
+4. Provide cultural learning suggestions
+5. Combine language learning with cultural understanding
 
-## 🔧 故障排除
+Format: Use Markdown, include cultural background, vocabulary learning, dialogue practice, cultural tips, summary
+```
 
-### 常见问题
+## ⚠️ Important Notes
 
-**1. 暗号验证失败**
-- 检查暗号拼写：`woyaofabu`
-- 确保暗号在正确位置
-- 检查是否有多余空格
+### Content Quality Control
+- Ensure accuracy of Portuguese content
+- Verify grammar and spelling
+- Check accuracy of English translations
+- Ensure content originality
 
-**2. 内容解析失败**
-- 检查Markdown格式
-- 确保所有必填字段已填写
-- 验证特殊字符是否正确转义
+### Technical Requirements
+- Use correct Markdown syntax
+- Ensure all required fields are complete
+- Enter passcode accurately (case-sensitive)
+- Choose appropriate tags and categories
 
-**3. 文件生成失败**
-- 检查文章标题是否包含特殊字符
-- 确保slug格式正确（小写字母、数字、连字符）
-- 验证JSON格式是否有效
+### Security Reminders
+- Do not share passcode in public places
+- Do not include passcode in Issue title or public content
+- Regularly check publishing status
 
-### 获取帮助
+## 🔧 Troubleshooting
 
-如果遇到问题：
-1. 检查Issue中的错误信息
-2. 参考本指南重新提交
-3. 联系项目维护者
+### Common Issues
 
-## 📊 最佳实践
+**1. Passcode Verification Failed**
+- Check passcode spelling: `woyaofabu`
+- Ensure passcode is in correct location
+- Check for extra spaces
 
-### 内容创作
-1. **主题选择**：选择实用、有价值的学习主题
-2. **结构清晰**：使用标题、列表、例句组织内容
-3. **例句丰富**：每个概念至少提供3-5个例句
-4. **实用性强**：包含实际应用场景和练习建议
+**2. Content Parsing Failed**
+- Check Markdown format
+- Ensure all required fields are filled
+- Verify special characters are properly escaped
 
-### SEO优化
-1. **关键词研究**：选择相关的葡萄牙语学习关键词
-2. **标题优化**：包含主要关键词，保持简洁
-3. **描述精准**：准确描述文章内容和学习价值
-4. **标签合理**：选择相关且热门的标签
+**3. File Generation Failed**
+- Check if article title contains special characters
+- Ensure slug format is correct (lowercase letters, numbers, hyphens)
+- Verify JSON format is valid
 
-### 提交效率
-1. **批量准备**：一次准备多篇文章的信息
-2. **模板复用**：保存常用的提示词模板
-3. **质量检查**：建立内容检查清单
-4. **定期发布**：保持稳定的发布频率
+### Getting Help
+
+If you encounter problems:
+1. Check error information in the Issue
+2. Refer to this guide and resubmit
+3. Contact project maintainers
+
+## 📊 Best Practices
+
+### Content Creation
+1. **Topic Selection**: Choose practical and valuable learning topics
+2. **Clear Structure**: Use headings, lists, example sentences to organize content
+3. **Rich Examples**: Provide at least 3-5 example sentences for each concept
+4. **Strong Practicality**: Include real application scenarios and practice suggestions
+
+### SEO Optimization
+1. **Keyword Research**: Choose relevant Portuguese learning keywords
+2. **Title Optimization**: Include main keywords, keep concise
+3. **Accurate Description**: Accurately describe article content and learning value
+4. **Reasonable Tags**: Choose relevant and popular tags
+
+### Submission Efficiency
+1. **Batch Preparation**: Prepare information for multiple articles at once
+2. **Template Reuse**: Save commonly used prompt templates
+3. **Quality Check**: Establish content checking checklist
+4. **Regular Publishing**: Maintain stable publishing frequency
 
 ---
 
-**最后更新：** 2024年1月
-**版本：** 1.0
-**维护者：** Sayola团队
+**Last Updated:** January 2024
+**Version:** 1.0
+**Maintainer:** Sayola Team
