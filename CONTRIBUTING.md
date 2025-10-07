@@ -79,6 +79,64 @@ Then create a pull request on GitHub with:
 - Screenshots/GIFs for UI changes
 - Reference to any related issues
 
+## 📖 Contributing Blog Posts
+
+We welcome high-quality blog posts about Portuguese language learning! Blog posts are a great way to share knowledge and help the Portuguese learning community.
+
+### Quick Start for Blog Contributors
+
+1. **Read the [Blog Contribution Guide](./BLOG_CONTRIBUTION_GUIDE.md)** for detailed requirements
+2. **Use the [Blog Post Template](./blog-post-template.json)** as a starting point
+3. **Submit via [GitHub Issue](https://github.com/your-username/sayola/issues/new?template=blog_post_submission.md)** (recommended)
+
+### 🤖 AI-Assisted Auto Publishing
+For authorized contributors, we offer an automated publishing system that bypasses manual review:
+
+**How it works:**
+- Use the [Auto Publish Issue Template](https://github.com/ailinking/sayola/issues/new?template=auto_publish_blog.md)
+- Follow the [AI Blog Generation Guide](AI_BLOG_GENERATION_GUIDE.md) for detailed instructions
+- Include the required verification code in your submission
+- Articles are automatically published upon successful verification
+
+**Benefits:**
+- Instant publication without waiting for manual review
+- Perfect for AI-generated content with proper verification
+- Streamlined workflow for frequent contributors
+
+### Blog Post Requirements
+
+- **Original content** about Portuguese language learning
+- **Accurate information** - preferably reviewed by native speakers
+- **Practical value** for Portuguese learners
+- **Clear structure** with headings, lists, and examples
+- **800-2000 words** (2-8 minute read time)
+- **Chinese language** with European Portuguese examples
+
+### Submission Methods
+
+1. **GitHub Issue** (Recommended): Use our [blog post submission template](https://github.com/your-username/sayola/issues/new?template=blog_post_submission.md)
+2. **Pull Request**: Add JSON file to `content/blog/` directory
+3. **Email**: Send to blog@sayola.com with template format
+
+### Content Topics
+
+- Portuguese grammar and language rules
+- Portuguese culture and traditions
+- Practical conversations and daily phrases
+- Language learning tips and methods
+- Portuguese history and geography
+- Portuguese cuisine and lifestyle
+- Language learning experience sharing
+
+### Review Process
+
+1. **Format Review** (1-2 business days)
+2. **Content Review** (3-5 business days) 
+3. **Technical Review** (1-2 business days)
+4. **Publication** (1 business day after approval)
+
+For detailed guidelines, see our [Blog Contribution Guide](./BLOG_CONTRIBUTION_GUIDE.md).
+
 ## 📝 Code Style Guidelines
 
 ### TypeScript/JavaScript

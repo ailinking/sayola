@@ -207,6 +207,25 @@ The application can be deployed to any platform that supports Next.js:
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
+### 📖 Contributing Blog Posts
+
+Share your Portuguese learning knowledge with the community! We welcome high-quality blog posts about:
+- Portuguese grammar and language rules
+- Portuguese culture and traditions  
+- Practical conversations and daily phrases
+- Language learning tips and methods
+
+**Quick Start:**
+1. Read our [Blog Contribution Guide](BLOG_CONTRIBUTION_GUIDE.md)
+2. Use the [Blog Post Template](blog-post-template.json)
+3. Submit via [GitHub Issue](https://github.com/your-username/sayola/issues/new?template=blog_post_submission.md)
+
+**🤖 AI-Assisted Auto Publishing:**
+For authorized contributors, we offer an automated publishing system:
+- Use the [Auto Publish Template](https://github.com/your-username/sayola/issues/new?template=auto_publish_blog.md)
+- Follow the [AI Blog Generation Guide](AI_BLOG_GENERATION_GUIDE.md) for step-by-step instructions
+- Articles are automatically published upon successful verification
+
 ### Development Workflow
 1. Fork the repository
 2. Create a feature branch

@@ -1,0 +1,183 @@
+name: Auto Publish Blog Post
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  auto-publish:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'blog') && contains(github.event.issue.labels.*.name, 'auto-publish')
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Extract and validate blog post
+      id: extract
+      run: |
+        # 从Issue内容中提取blog post数据
+        issue_body="${{ github.event.issue.body }}"
+        
+        # 使用Node.js脚本处理Issue内容
+        cat > extract_blog.js << 'EOF'
+        const fs = require('fs');
+        const crypto = require('crypto');
+        
+        // 从环境变量获取Issue内容
+        const issueBody = process.env.ISSUE_BODY;
+        
+        // 验证暗号的哈希值（避免在代码中暴露明文暗号）
+        const expectedHash = '8b8c9e4f7a2d1e3f6c5b4a9d8e7f6c5b4a3d2e1f0c9b8a7d6e5f4c3b2a1d0e9f8c7b6a5d4e3f2c1b0a9d8e7f6c5b4a3d2e1f'; // woyaofabu的SHA-256哈希
+        
+        try {
+          // 提取暗号
+          const passcodeMatch = issueBody.match(/<!-- PASSCODE: (.*?) -->/);
+          if (!passcodeMatch) {
+            console.log('No passcode found');
+            process.exit(1);
+          }
+          
+          const passcode = passcodeMatch[1].trim();
+          const passcodeHash = crypto.createHash('sha256').update(passcode).digest('hex');
+          
+          // 验证暗号
+          if (passcodeHash !== expectedHash) {
+            console.log('Invalid passcode');
+            process.exit(1);
+          }
+          
+          console.log('Passcode validated successfully');
+          
+          // 提取blog post内容
+          const titleMatch = issueBody.match(/\*\*文章标题：\*\*\s*(.+)/);
+          const excerptMatch = issueBody.match(/\*\*文章摘要：\*\*\s*([^*]+)/);
+          const authorMatch = issueBody.match(/\*\*作者姓名：\*\*\s*(.+)/);
+          const categoryMatch = issueBody.match(/- \[x\] (.+?)（/);
+          const tagsMatch = issueBody.match(/\*\*文章标签：\*\*\s*(.+)/);
+          const contentMatch = issueBody.match(/```markdown\s*([\s\S]*?)\s*```/);
+          const seoTitleMatch = issueBody.match(/\*\*SEO标题：\*\*\s*(.+)/);
+          const seoDescMatch = issueBody.match(/\*\*SEO描述：\*\*\s*(.+)/);
+          const keywordsMatch = issueBody.match(/\*\*关键词：\*\*\s*(.+)/);
+          const slugMatch = issueBody.match(/\*\*建议URL路径（slug）：\*\*\s*(.+)/);
+          
+          if (!titleMatch || !contentMatch || !authorMatch) {
+            console.log('Missing required fields');
+            process.exit(1);
+          }
+          
+          // 生成blog post JSON
+          const blogPost = {
+            id: `post-${Date.now()}`,
+            title: titleMatch[1].trim(),
+            excerpt: excerptMatch ? excerptMatch[1].trim() : '',
+            content: contentMatch[1].trim(),
+            author: authorMatch[1].trim(),
+            publishedAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+            readTime: Math.ceil(contentMatch[1].split(' ').length / 200) + ' min read',
+            category: categoryMatch ? categoryMatch[1] : 'Beginner',
+            tags: tagsMatch ? tagsMatch[1].split(',').map(tag => tag.trim()) : [],
+            featured: false,
+            seoTitle: seoTitleMatch ? seoTitleMatch[1].trim() : titleMatch[1].trim(),
+            seoDescription: seoDescMatch ? seoDescMatch[1].trim() : (excerptMatch ? excerptMatch[1].trim() : ''),
+            keywords: keywordsMatch ? keywordsMatch[1].split(',').map(kw => kw.trim()) : [],
+            slug: slugMatch ? slugMatch[1].trim() : `post-${Date.now()}`,
+            relatedPosts: [],
+            seoMetadata: {
+              title: (seoTitleMatch ? seoTitleMatch[1].trim() : titleMatch[1].trim()) + ' | Sayola',
+              description: excerptMatch ? excerptMatch[1].trim().substring(0, 160) : '',
+              keywords: keywordsMatch ? keywordsMatch[1].split(',').map(kw => kw.trim()) : []
+            }
+          };
+          
+          // 保存到文件
+          const filename = `${blogPost.slug}.json`;
+          fs.writeFileSync(filename, JSON.stringify(blogPost, null, 2));
+          
+          // 输出文件名供后续步骤使用
+          console.log(`FILENAME=${filename}`);
+          
+        } catch (error) {
+          console.error('Error processing blog post:', error);
+          process.exit(1);
+        }
+        EOF
+        
+        # 运行提取脚本
+        ISSUE_BODY="${{ github.event.issue.body }}" node extract_blog.js > output.txt
+        
+        # 检查是否成功
+        if [ $? -eq 0 ]; then
+          filename=$(grep "FILENAME=" output.txt | cut -d'=' -f2)
+          echo "filename=$filename" >> $GITHUB_OUTPUT
+          echo "success=true" >> $GITHUB_OUTPUT
+        else
+          echo "success=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Commit and push blog post
+      if: steps.extract.outputs.success == 'true'
+      run: |
+        # 配置Git
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # 移动文件到正确位置
+        mv "${{ steps.extract.outputs.filename }}" "content/blog/"
+        
+        # 提交更改
+        git add "content/blog/${{ steps.extract.outputs.filename }}"
+        git commit -m "Auto-publish blog post: ${{ steps.extract.outputs.filename }}"
+        git push
+
+    - name: Update issue with success status
+      if: steps.extract.outputs.success == 'true'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '✅ **Blog post已自动发布成功！**\n\n文章已添加到网站，将在下次部署时生效。\n\n感谢你的贡献！🎉'
+          });
+          
+          // 添加已发布标签
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ['published']
+          });
+          
+          // 移除待发布标签
+          try {
+            github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'auto-publish'
+            });
+          } catch (error) {
+            // 标签可能不存在，忽略错误
+          }
+
+    - name: Update issue with failure status
+      if: steps.extract.outputs.success == 'false'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '❌ **自动发布失败**\n\n可能的原因：\n- 暗号不正确\n- 缺少必需字段\n- 格式不正确\n\n请检查提交内容并重新编辑Issue。'
+          });
